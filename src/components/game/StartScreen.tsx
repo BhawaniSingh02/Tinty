@@ -1,19 +1,26 @@
 import { useMemo, useState } from 'react'
-import { ButtonLink } from '../ui/Button.tsx'
+import { useNavigate } from 'react-router-dom'
+import { Button, ButtonLink } from '../ui/Button.tsx'
 import DifficultyToggle from '../ui/DifficultyToggle.tsx'
 import { DEFAULT_DIFFICULTY, type Difficulty } from '../../game/difficulty.ts'
 import { MAX_SCORE } from '../../game/scoring.ts'
+import { randomSeed, seedToCode } from '../../game/rng.ts'
 import { activeStreak, loadStats } from '../../game/storage.ts'
 
 /**
- * The start screen, rendered inside <GameCard>. Mode select grows in step 6
- * (lobby); for now Solo and Daily are live.
+ * The start screen, rendered inside <GameCard>. Choose Solo or With friends,
+ * pick a difficulty, or jump to the Daily.
  */
 export default function StartScreen() {
+  const navigate = useNavigate()
   const [difficulty, setDifficulty] = useState<Difficulty>(DEFAULT_DIFFICULTY)
   const stats = useMemo(() => loadStats(), [])
   const streak = activeStreak(stats)
   const best = stats.best[difficulty]
+
+  const playWithFriends = () => {
+    navigate(`/c/${seedToCode(randomSeed())}?d=${difficulty}`)
+  }
 
   return (
     <div className="flex h-full flex-col justify-between p-7 sm:p-9">
@@ -42,18 +49,23 @@ export default function StartScreen() {
       </div>
 
       <div className="flex flex-col items-start gap-4">
-        <DifficultyToggle value={difficulty} onChange={setDifficulty} />
-
-        <div className="flex flex-wrap gap-2">
-          <ButtonLink to={`/solo?d=${difficulty}`}>Play solo</ButtonLink>
-          <ButtonLink to="/daily" variant="secondary">
-            Daily
-          </ButtonLink>
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-text-dim">
+            Solo or with friends?
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <ButtonLink to={`/solo?d=${difficulty}`}>Solo</ButtonLink>
+            <Button variant="secondary" onClick={playWithFriends}>
+              With friends
+            </Button>
+          </div>
         </div>
 
-        <p className="text-xs text-text-dim/70">
-          Finish a game to challenge a friend.
-        </p>
+        <DifficultyToggle value={difficulty} onChange={setDifficulty} />
+
+        <ButtonLink to="/daily" variant="secondary">
+          Daily challenge
+        </ButtonLink>
       </div>
     </div>
   )

@@ -11,5 +11,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    // Tests run with Supabase disabled — components exercise the offline path,
+    // and the realtime/leaderboard modules are mocked where a happy path matters.
+    env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '' },
   },
 })

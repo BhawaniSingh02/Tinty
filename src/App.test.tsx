@@ -12,22 +12,38 @@ test('renders the home start screen', () => {
   expect(
     screen.getByRole('heading', { name: 'color match' }),
   ).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Solo' })).toHaveAttribute(
+    'href',
+    '/solo?d=easy',
+  )
   expect(
-    screen.getByRole('link', { name: 'Play solo' }),
-  ).toHaveAttribute('href', '/solo?d=easy')
+    screen.getByRole('button', { name: 'With friends' }),
+  ).toBeInTheDocument()
 })
 
-test('difficulty toggle updates the Play solo link', () => {
+test('difficulty toggle updates the Solo link', () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <App />
     </MemoryRouter>,
   )
   fireEvent.click(screen.getByRole('radio', { name: 'hard' }))
-  expect(screen.getByRole('link', { name: 'Play solo' })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: 'Solo' })).toHaveAttribute(
     'href',
     '/solo?d=hard',
   )
+})
+
+test('"With friends" starts a shareable same-seed game', () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>,
+  )
+  fireEvent.click(screen.getByRole('button', { name: 'With friends' }))
+  expect(
+    screen.getByRole('heading', { name: 'Play with a friend' }),
+  ).toBeInTheDocument()
 })
 
 test('unknown route shows the not-found screen', () => {

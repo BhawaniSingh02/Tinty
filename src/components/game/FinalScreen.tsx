@@ -22,6 +22,7 @@ export default function FinalScreen({
   seed,
   challengerScore,
   outcome,
+  gameNumber,
   onPlayAgain,
 }: {
   results: RoundResult[]
@@ -30,6 +31,7 @@ export default function FinalScreen({
   seed: number
   challengerScore: number | null
   outcome: GameOutcome | null
+  gameNumber: number | null
   onPlayAgain: () => void
 }) {
   const total = totalScore(results.map((r) => r.points))
@@ -89,13 +91,18 @@ export default function FinalScreen({
 
       <div className="flex flex-col gap-2">
         <ShareButton seed={seed} difficulty={difficulty} score={total} />
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Button variant="secondary" onClick={onPlayAgain}>
             {isChallenge ? 'Try again' : 'Play again'}
           </Button>
           <ButtonLink to="/" variant="secondary">
             Home
           </ButtonLink>
+          {gameNumber !== null && (
+            <span className="ml-auto text-xs tabular-nums text-text-dim/70">
+              game #{gameNumber.toLocaleString()}
+            </span>
+          )}
         </div>
       </div>
     </div>

@@ -48,23 +48,36 @@ function currentOrigin(): string {
   return globalThis.location?.origin ?? 'https://tinty.fun'
 }
 
-/** The shareable URL for a game the player just finished. */
+/** The `/c/:code` URL for a game, with the challenger's score if there is one. */
+export function challengeLink(
+  code: string,
+  difficulty: Difficulty,
+  score?: number,
+  origin: string = currentOrigin(),
+): string {
+  const params = new URLSearchParams({ d: difficulty })
+  if (score !== undefined) params.set('s', String(round2(score)))
+  return `${origin}/c/${code}?${params.toString()}`
+}
+
+/** Same, keyed by seed — for a game the player just finished. */
 export function challengeUrl(
   seed: number,
   difficulty: Difficulty,
   score: number,
   origin: string = currentOrigin(),
 ): string {
-  const params = new URLSearchParams({
-    d: difficulty,
-    s: String(round2(score)),
-  })
-  return `${origin}/c/${seedToCode(seed)}?${params.toString()}`
+  return challengeLink(seedToCode(seed), difficulty, score, origin)
 }
 
-/** The pre-filled brag that goes with the link. */
+/** The pre-filled brag that goes with a played challenge link. */
 export function challengeMessage(score: number, url: string): string {
   return `I got ${score.toFixed(2)}/50 on Tinty Color Match — closest match wins: ${url}`
+}
+
+/** The pre-filled invite for a "play with friends" link shared before playing. */
+export function inviteMessage(url: string): string {
+  return `Play these 5 colors with me on Tinty Color Match: ${url}`
 }
 
 export type ShareResult = 'shared' | 'copied' | 'dismissed' | 'failed'
@@ -96,5 +109,17 @@ export async function shareChallenge(message: string): Promise<ShareResult> {
     return 'copied'
   } catch {
     return 'failed'
+  }
+}
+
+/** Plain clipboard copy — used where there's no native-share fallback wanted. */
+export async function copyToClipboard(text: string): Promise<boolean> {
+  const clip = globalThis.navigator?.clipboard
+  if (!clip?.writeText) return false
+  try {
+    await clip.writeText(text)
+    return true
+  } catch {
+    return false
   }
 }

@@ -3,7 +3,9 @@ import { gameReducer, initialState } from '../../game/gameReducer.ts'
 import { generateRounds } from '../../game/palette.ts'
 import { ROUNDS, totalScore } from '../../game/scoring.ts'
 import { recordGame, type GameOutcome } from '../../game/storage.ts'
+import { bumpGlobalPlays } from '../../game/leaderboard.ts'
 import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
+import type { RoundResult } from '../../game/gameReducer.ts'
 import type { GameMode } from '../../game/mode.ts'
 import RevealScreen from './RevealScreen.tsx'
 import HsbPicker from './HsbPicker.tsx'
@@ -12,21 +14,24 @@ import FinalScreen from './FinalScreen.tsx'
 
 /**
  * The Color Match loop, driven by one numeric seed. Solo passes a random seed;
- * Challenge passes the seed from the link. Renders inside <GameCard>.
+ * Challenge and Daily pass a shared one. Renders inside <GameCard>.
  *
- * Remount (via `key`) to start a fresh game.
+ * With `onComplete` the parent owns the end screen (the daily does this);
+ * otherwise <FinalScreen> is shown. Remount (via `key`) to start fresh.
  */
 export default function ColorMatchGame({
   seed,
   difficulty,
   mode = 'solo',
   challengerScore = null,
+  onComplete,
   onPlayAgain,
 }: {
   seed: number
   difficulty: Difficulty
   mode?: GameMode
   challengerScore?: number | null
+  onComplete?: (results: RoundResult[], score: number) => void
   onPlayAgain: () => void
 }) {
   const targets = useMemo(
@@ -37,8 +42,8 @@ export default function ColorMatchGame({
   const { phase, round, guess, results } = state
   const target = targets[round]
 
-  // Persist the finished game once, when the last round wraps up.
   const [outcome, setOutcome] = useState<GameOutcome | null>(null)
+  const [gameNumber, setGameNumber] = useState<number | null>(null)
   const recordedRef = useRef(false)
 
   const finishRound = () => {
@@ -46,6 +51,8 @@ export default function ColorMatchGame({
       recordedRef.current = true
       const score = totalScore(results.map((r) => r.points))
       setOutcome(recordGame({ seed, difficulty, score }))
+      void bumpGlobalPlays().then(setGameNumber)
+      onComplete?.(results, score)
     }
     dispatch({ type: 'next' })
   }
@@ -85,6 +92,8 @@ export default function ColorMatchGame({
       )
 
     case 'final':
+      // The daily supplies onComplete and renders its own result screen.
+      if (onComplete) return null
       return (
         <FinalScreen
           results={results}
@@ -93,6 +102,7 @@ export default function ColorMatchGame({
           seed={seed}
           challengerScore={challengerScore}
           outcome={outcome}
+          gameNumber={gameNumber}
           onPlayAgain={onPlayAgain}
         />
       )
