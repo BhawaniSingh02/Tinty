@@ -15,13 +15,13 @@ function Badge({ children }: { children: string }) {
 
 function Avatar({ tag }: { tag: string }) {
   return (
-    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-surface-2 text-sm font-bold">
-      {(tag || '?').slice(0, 1).toUpperCase()}
+    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-surface-2 text-sm font-bold text-text-dim">
+      {tag ? tag.slice(0, 1).toUpperCase() : '·'}
     </span>
   )
 }
 
-/** The waiting room — share the link, see who's in, host starts. */
+/** The waiting room — set your initials, share the link, host starts. */
 export default function LiveLobby({
   code,
   difficulty,
@@ -38,6 +38,7 @@ export default function LiveLobby({
   onLeave: () => void
 }) {
   const [copied, setCopied] = useState(false)
+  const needsTag = tag.length === 0
   const canStart = room.isHost && room.players.length >= 2
 
   const copy = async () => {
@@ -54,15 +55,34 @@ export default function LiveLobby({
         Same five colors, closest match wins.
       </p>
 
-      <ul className="mt-6 flex flex-col gap-2.5">
-        {room.players.map((p) => (
-          <li key={p.id} className="flex items-center gap-3">
-            <Avatar tag={p.tag} />
-            <span className="font-semibold">{p.tag || 'joining…'}</span>
-            {p.id === room.hostId && <Badge>host</Badge>}
-            {p.id === room.meId && <Badge>you</Badge>}
-          </li>
-        ))}
+      {needsTag && (
+        <div className="mt-5 rounded-xl border border-border bg-surface-2 p-4">
+          <p className="text-sm font-semibold">Pick your initials</p>
+          <p className="mt-0.5 text-xs text-text-dim">
+            So your friend knows who they&rsquo;re up against.
+          </p>
+          <div className="mt-2">
+            <TagInput value={tag} onChange={onTag} />
+          </div>
+        </div>
+      )}
+
+      <ul className="mt-5 flex flex-col gap-2.5">
+        {room.players.map((p) => {
+          const isMe = p.id === room.meId
+          return (
+            <li key={p.id} className="flex items-center gap-3">
+              <Avatar tag={p.tag} />
+              <span
+                className={`font-semibold ${p.tag ? '' : 'text-text-dim'}`}
+              >
+                {p.tag || (isMe ? 'you' : 'joining…')}
+              </span>
+              {p.id === room.hostId && <Badge>host</Badge>}
+              {isMe && <Badge>you</Badge>}
+            </li>
+          )
+        })}
         {room.players.length < 2 && (
           <li className="flex items-center gap-3 text-text-dim">
             <span className="grid size-9 shrink-0 place-items-center rounded-full border border-dashed border-border">
@@ -72,13 +92,6 @@ export default function LiveLobby({
           </li>
         )}
       </ul>
-
-      {tag.length === 0 && (
-        <div className="mt-5">
-          <p className="mb-1.5 text-xs text-text-dim">Pick your initials</p>
-          <TagInput value={tag} onChange={onTag} />
-        </div>
-      )}
 
       <div className="mt-auto flex flex-col gap-2.5 pt-6">
         <Button variant="secondary" onClick={copy} className="w-full">
