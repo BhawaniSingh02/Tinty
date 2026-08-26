@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom'
+import Layout from '../components/layout/Layout.tsx'
+import GameCard from '../components/layout/GameCard.tsx'
 
 export default function NotFound() {
   return (
-    <main className="mx-auto flex min-h-full max-w-md flex-col items-center justify-center gap-4 p-6 text-center">
-      <h1 className="text-3xl font-bold">Nothing here</h1>
-      <Link to="/" className="text-accent">
-        Back to tinty
-      </Link>
-    </main>
+    <Layout>
+      <GameCard>
+        <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
+          <h1 className="text-2xl font-bold">Nothing here</h1>
+          <Link to="/" className="text-sm text-accent">
+            Back to tinty
+          </Link>
+        </div>
+      </GameCard>
+    </Layout>
   )
 }
