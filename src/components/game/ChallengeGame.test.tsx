@@ -89,7 +89,7 @@ test('a challenge link plays out and shows the head-to-head', () => {
   expect(screen.getByText('You')).toBeInTheDocument()
   expect(screen.getByText('Them')).toBeInTheDocument()
   expect(
-    screen.getByText(/you win by|they got you by|photo finish/i),
+    screen.getByRole('heading', { name: /you win|them wins|dead heat/i }),
   ).toBeInTheDocument()
   expect(screen.getByText(/easy · challenge/i)).toBeInTheDocument()
 })

@@ -11,9 +11,8 @@ import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
 import { MODE_LABEL, type GameMode } from '../../game/mode.ts'
 
 /**
- * Phase 4: the final score out of 50, the five rounds at a glance, personal
- * best / streak, and a one-tap challenge link. On a challenge game it leads
- * with the head-to-head instead.
+ * The end of a game: the score, personal best / streak, a one-tap challenge
+ * link — or, on a challenge, the head-to-head with the friend.
  */
 export default function FinalScreen({
   results,
@@ -21,6 +20,7 @@ export default function FinalScreen({
   mode,
   seed,
   challengerScore,
+  challengerBreakdown,
   outcome,
   gameNumber,
   onPlayAgain,
@@ -30,11 +30,13 @@ export default function FinalScreen({
   mode: GameMode
   seed: number
   challengerScore: number | null
+  challengerBreakdown: number[] | null
   outcome: GameOutcome | null
   gameNumber: number | null
   onPlayAgain: () => void
 }) {
-  const total = totalScore(results.map((r) => r.points))
+  const breakdown = results.map((r) => r.points)
+  const total = totalScore(breakdown)
   const caption = useMemo(() => scoreCaption(total), [total])
   const streak = outcome ? activeStreak(outcome.stats) : 0
   const isChallenge = challengerScore !== null
@@ -47,10 +49,19 @@ export default function FinalScreen({
         </div>
 
         {isChallenge ? (
-          <HeadToHead you={total} them={challengerScore} />
+          <div className="mt-3">
+            <HeadToHead
+              you={{ label: 'You', total, breakdown }}
+              them={{
+                label: 'Them',
+                total: challengerScore,
+                breakdown: challengerBreakdown ?? undefined,
+              }}
+            />
+          </div>
         ) : (
           <>
-            <div className="mt-2 text-5xl font-bold tabular-nums">
+            <div className="mt-3 text-6xl font-bold tabular-nums">
               {total.toFixed(2)}
               <span className="ml-1 text-2xl font-semibold text-text-dim">
                 / {MAX_SCORE}
@@ -78,19 +89,26 @@ export default function FinalScreen({
         )}
       </div>
 
-      <div className="flex gap-2">
-        {results.map((r, i) => (
-          <DiagonalSwatch
-            key={i}
-            guess={r.guess}
-            target={r.target}
-            points={r.points}
-          />
-        ))}
-      </div>
+      {!isChallenge && (
+        <div className="flex gap-2">
+          {results.map((r, i) => (
+            <DiagonalSwatch
+              key={i}
+              guess={r.guess}
+              target={r.target}
+              points={r.points}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="flex flex-col gap-2">
-        <ShareButton seed={seed} difficulty={difficulty} score={total} />
+        <ShareButton
+          seed={seed}
+          difficulty={difficulty}
+          score={total}
+          breakdown={breakdown}
+        />
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="secondary" onClick={onPlayAgain}>
             {isChallenge ? 'Try again' : 'Play again'}

@@ -6,21 +6,31 @@ export const MAX_POINTS_PER_ROUND = 10
 export const MAX_SCORE = ROUNDS * MAX_POINTS_PER_ROUND // 50
 
 /**
- * Scoring curve: ΔE00 → points (0…10).
+ * Perceptual scoring — ΔE00 → points (0…10).
  *
- *   points = MAX * clamp(1 - ΔE / DELTA_E_ZERO, 0, 1) ^ SCORING_EXPONENT
+ *   points = 10 · exp( −(ΔE / FALLOFF) ^ SHARPNESS )
  *
- * ΔE 0 → 10.00 · ΔE ≥ DELTA_E_ZERO → 0.00 · linear in between (exponent 1).
- * These constants set the whole game's feel — tune after the first real
- * playtest (CLAUDE.md flags this as an open decision).
+ * ΔE00 ≈ 1 is the just-noticeable difference, so anything inside PERFECT_DE is
+ * full marks. Past that the curve has a flat top (SHARPNESS > 1) — near-misses
+ * barely cost anything — then rolls off once the colors are visibly apart and
+ * tails to 0 for a wildly wrong guess.
+ *
+ *   ΔE   1  →  9.8      ΔE  10  →  6.0      ΔE  30  →  0.9
+ *   ΔE   3  →  9.0      ΔE  15  →  4.0      ΔE  45  →  0.1
+ *   ΔE   5  →  8.2      ΔE  20  →  2.6      ΔE ≥48  →  0
  */
-export const DELTA_E_ZERO = 25
-export const SCORING_EXPONENT = 1
+export const SCORE_PERFECT_DE = 0.8
+export const SCORE_FALLOFF = 16
+export const SCORE_SHARPNESS = 1.4
 
 /** Points (0–10, 2 dp) for a ΔE00 value. */
 export function pointsForDeltaE(deltaE: number): number {
-  const closeness = Math.max(0, 1 - Math.max(0, deltaE) / DELTA_E_ZERO)
-  return round2(MAX_POINTS_PER_ROUND * closeness ** SCORING_EXPONENT)
+  const dE = Math.max(0, deltaE)
+  if (dE <= SCORE_PERFECT_DE) return MAX_POINTS_PER_ROUND
+  const raw =
+    MAX_POINTS_PER_ROUND *
+    Math.exp(-((dE / SCORE_FALLOFF) ** SCORE_SHARPNESS))
+  return raw < 0.1 ? 0 : round2(raw)
 }
 
 /** Points (0–10, 2 dp) for a guess vs the target — both HSB. */

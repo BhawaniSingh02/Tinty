@@ -14,16 +14,18 @@ export default function ShareButton({
   seed,
   difficulty,
   score,
+  breakdown,
 }: {
   seed: number
   difficulty: Difficulty
   score: number
+  breakdown?: number[]
 }) {
   const [state, setState] = useState<State>('idle')
   const [url, setUrl] = useState('')
 
   const onClick = async () => {
-    const link = challengeUrl(seed, difficulty, score)
+    const link = challengeUrl(seed, difficulty, score, breakdown)
     const result = await shareChallenge(challengeMessage(score, link))
     if (result === 'shared') setState('shared')
     else if (result === 'copied') setState('copied')

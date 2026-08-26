@@ -24,6 +24,7 @@ export default function ColorMatchGame({
   difficulty,
   mode = 'solo',
   challengerScore = null,
+  challengerBreakdown = null,
   onComplete,
   onPlayAgain,
 }: {
@@ -31,6 +32,7 @@ export default function ColorMatchGame({
   difficulty: Difficulty
   mode?: GameMode
   challengerScore?: number | null
+  challengerBreakdown?: number[] | null
   onComplete?: (results: RoundResult[], score: number) => void
   onPlayAgain: () => void
 }) {
@@ -101,6 +103,7 @@ export default function ColorMatchGame({
           mode={mode}
           seed={seed}
           challengerScore={challengerScore}
+          challengerBreakdown={challengerBreakdown}
           outcome={outcome}
           gameNumber={gameNumber}
           onPlayAgain={onPlayAgain}

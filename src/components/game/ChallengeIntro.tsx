@@ -29,7 +29,7 @@ export default function ChallengeIntro({
   >('idle')
 
   const url = challengeLink(challenge.code, challenge.difficulty)
-  const hasFriendScore = challenge.challengerScore !== null
+  const friendScore = challenge.challengerScore
 
   const share = async () => {
     const result = await shareChallenge(inviteMessage(url))
@@ -44,42 +44,46 @@ export default function ChallengeIntro({
         : 'Share invite link'
 
   return (
-    <div className="screen-in flex h-full flex-col justify-between p-7">
-      <div>
-        <div className="text-xs uppercase tracking-widest text-text-dim">
-          {DIFFICULTY_CONFIG[challenge.difficulty].label} · with friends
-        </div>
-
-        {hasFriendScore ? (
-          <>
-            <h1 className="mt-2 text-3xl font-bold">Beat your friend</h1>
-            <p className="mt-3 max-w-sm text-sm text-text-dim">
-              They scored{' '}
-              <span className="font-semibold tabular-nums text-text">
-                {challenge.challengerScore?.toFixed(2)}
-              </span>{' '}
-              / {MAX_SCORE} on these exact five colors.
-            </p>
-          </>
-        ) : (
-          <>
-            <h1 className="mt-2 text-3xl font-bold">Play with a friend</h1>
-            <p className="mt-3 max-w-sm text-sm text-text-dim">
-              Play live together now, or send the link and compare scores after.
-            </p>
-          </>
-        )}
+    <div className="screen-in flex h-full flex-col p-7">
+      <div className="text-xs uppercase tracking-widest text-text-dim">
+        {DIFFICULTY_CONFIG[challenge.difficulty].label} · with friends
       </div>
 
-      <div className="flex flex-col items-start gap-3">
-        {hasFriendScore ? (
-          <Button onClick={onPlayAsync}>Beat it</Button>
+      {friendScore !== null ? (
+        <>
+          <h1 className="mt-2 text-3xl font-bold">Beat your friend</h1>
+          <p className="mt-3 text-sm text-text-dim">
+            They played these exact five colors and scored
+          </p>
+          <div className="mt-3 text-5xl font-bold tabular-nums">
+            {friendScore.toFixed(2)}
+            <span className="ml-1 text-xl font-semibold text-text-dim">
+              / {MAX_SCORE}
+            </span>
+          </div>
+        </>
+      ) : (
+        <>
+          <h1 className="mt-2 text-3xl font-bold">Play with a friend</h1>
+          <p className="mt-3 max-w-sm text-sm text-text-dim">
+            Play live together now, or send the link and compare scores after.
+          </p>
+        </>
+      )}
+
+      <div className="mt-auto flex flex-col gap-2.5 pt-6">
+        {friendScore !== null ? (
+          <Button onClick={onPlayAsync} className="w-full">
+            Beat it
+          </Button>
         ) : (
           <>
             {isSupabaseConfigured && (
-              <Button onClick={onPlayLive}>Play live together</Button>
+              <Button onClick={onPlayLive} className="w-full">
+                Play live together
+              </Button>
             )}
-            <Button variant="secondary" onClick={share}>
+            <Button variant="secondary" onClick={share} className="w-full">
               {shareLabel}
             </Button>
             {shareState === 'failed' && (
@@ -91,7 +95,7 @@ export default function ChallengeIntro({
                 className="w-full rounded-lg border border-border bg-surface-2 px-3 py-2 text-xs text-text-dim"
               />
             )}
-            <Button variant="secondary" onClick={onPlayAsync}>
+            <Button variant="secondary" onClick={onPlayAsync} className="w-full">
               Just play now
             </Button>
           </>

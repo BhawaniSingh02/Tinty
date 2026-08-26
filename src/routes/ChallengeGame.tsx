@@ -54,6 +54,7 @@ export default function ChallengeGame() {
         difficulty={challenge.difficulty}
         mode="challenge"
         challengerScore={challenge.challengerScore}
+        challengerBreakdown={challenge.challengerBreakdown}
         onPlayAgain={() => setReplays((n) => n + 1)}
       />
     )

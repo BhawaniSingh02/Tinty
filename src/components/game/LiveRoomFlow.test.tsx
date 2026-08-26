@@ -66,7 +66,7 @@ test('host can Start with two players', () => {
       ],
     }),
   )
-  fireEvent.click(screen.getByRole('button', { name: 'Start' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Start match' }))
   expect(start).toHaveBeenCalled()
 })
 
@@ -84,7 +84,7 @@ test('a non-host waits for the host', () => {
   )
   expect(screen.getByText(/waiting for the host/i)).toBeInTheDocument()
   expect(
-    screen.queryByRole('button', { name: /^start$/i }),
+    screen.queryByRole('button', { name: /start match/i }),
   ).not.toBeInTheDocument()
 })
 

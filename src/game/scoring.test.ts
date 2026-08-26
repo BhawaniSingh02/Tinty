@@ -1,5 +1,4 @@
 import {
-  DELTA_E_ZERO,
   MAX_POINTS_PER_ROUND,
   MAX_SCORE,
   pointsForDeltaE,
@@ -8,38 +7,36 @@ import {
 } from './scoring.ts'
 
 describe('pointsForDeltaE', () => {
-  test('ΔE 0 → full points', () => {
+  test('an imperceptible miss (ΔE ≤ ~1) is full marks', () => {
     expect(pointsForDeltaE(0)).toBe(MAX_POINTS_PER_ROUND)
-  })
-
-  test('ΔE at/above the zero threshold → 0', () => {
-    expect(pointsForDeltaE(DELTA_E_ZERO)).toBe(0)
-    expect(pointsForDeltaE(DELTA_E_ZERO + 10)).toBe(0)
-    expect(pointsForDeltaE(999)).toBe(0)
-  })
-
-  test('negative ΔE is treated as 0', () => {
     expect(pointsForDeltaE(-5)).toBe(MAX_POINTS_PER_ROUND)
+    expect(pointsForDeltaE(0.5)).toBe(MAX_POINTS_PER_ROUND)
+  })
+
+  test('a barely-noticeable miss barely costs anything', () => {
+    expect(pointsForDeltaE(2)).toBeGreaterThan(9)
+    expect(pointsForDeltaE(3.5)).toBeGreaterThan(8.5)
+  })
+
+  test('a clearly-different color scores low, a wildly wrong one → 0', () => {
+    expect(pointsForDeltaE(10)).toBeGreaterThan(4)
+    expect(pointsForDeltaE(10)).toBeLessThan(7)
+    expect(pointsForDeltaE(30)).toBeLessThan(1)
+    expect(pointsForDeltaE(60)).toBe(0)
+    expect(pointsForDeltaE(999)).toBe(0)
   })
 
   test('monotonically decreasing', () => {
     let prev = Infinity
-    for (let dE = 0; dE <= DELTA_E_ZERO; dE += 0.5) {
+    for (let dE = 0; dE <= 60; dE += 0.5) {
       const p = pointsForDeltaE(dE)
       expect(p).toBeLessThanOrEqual(prev)
       prev = p
     }
   })
 
-  test('halfway is half points (linear)', () => {
-    expect(pointsForDeltaE(DELTA_E_ZERO / 2)).toBeCloseTo(
-      MAX_POINTS_PER_ROUND / 2,
-      2,
-    )
-  })
-
   test('rounded to 2 decimals', () => {
-    const p = pointsForDeltaE(3.7)
+    const p = pointsForDeltaE(7.3)
     expect(p).toBe(Math.round(p * 100) / 100)
   })
 })
@@ -59,9 +56,7 @@ describe('scoreRound', () => {
   test('hue error matters far less at low saturation than at high', () => {
     const sameHueGap = (s: number) =>
       scoreRound({ h: 30, s, b: 70 }, { h: 90, s, b: 70 })
-    // a 60° hue miss on near-greys barely dents the score...
     expect(sameHueGap(5)).toBeGreaterThan(7)
-    // ...but the same miss on vivid colors is punishing.
     expect(sameHueGap(5)).toBeGreaterThan(sameHueGap(85) + 3)
   })
 })
