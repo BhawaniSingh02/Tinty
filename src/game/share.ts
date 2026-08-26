@@ -90,6 +90,15 @@ export function challengeUrl(
   return challengeLink(seedToCode(seed), difficulty, score, breakdown, origin)
 }
 
+/** The `/live/:code` URL for a real-time room. */
+export function liveLink(
+  code: string,
+  difficulty: Difficulty,
+  origin: string = currentOrigin(),
+): string {
+  return `${origin}/live/${code}?d=${difficulty}`
+}
+
 /** Copy text to the clipboard. Returns false when it's unavailable / blocked
  *  (the caller shows the URL for manual selection instead). No native share
  *  sheet — people copy the link and send it themselves. */

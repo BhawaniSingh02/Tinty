@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button } from '../ui/Button.tsx'
 import TagInput from './TagInput.tsx'
-import { challengeLink, copyToClipboard } from '../../game/share.ts'
+import { copyToClipboard, liveLink } from '../../game/share.ts'
 import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
 import type { LiveRoom } from '../../hooks/useLiveRoom.ts'
 
@@ -41,7 +41,7 @@ export default function LiveLobby({
   const canStart = room.isHost && room.players.length >= 2
 
   const copy = async () => {
-    setCopied(await copyToClipboard(challengeLink(code, difficulty)))
+    setCopied(await copyToClipboard(liveLink(code, difficulty)))
   }
 
   return (

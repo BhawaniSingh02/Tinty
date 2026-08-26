@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button, ButtonLink } from '../ui/Button.tsx'
 import DifficultyToggle from '../ui/DifficultyToggle.tsx'
 import { DEFAULT_DIFFICULTY, type Difficulty } from '../../game/difficulty.ts'
 import { MAX_SCORE } from '../../game/scoring.ts'
-import { randomSeed, seedToCode } from '../../game/rng.ts'
 import { activeStreak, loadStats } from '../../game/storage.ts'
+import { useNavigate } from 'react-router-dom'
 
 /**
  * The start screen, rendered inside <GameCard>. Choose Solo or With friends,
@@ -17,10 +16,6 @@ export default function StartScreen() {
   const stats = useMemo(() => loadStats(), [])
   const streak = activeStreak(stats)
   const best = stats.best[difficulty]
-
-  const playWithFriends = () => {
-    navigate(`/c/${seedToCode(randomSeed())}?d=${difficulty}`)
-  }
 
   return (
     <div className="flex h-full flex-col justify-between p-7 sm:p-9">
@@ -55,7 +50,10 @@ export default function StartScreen() {
           </p>
           <div className="flex flex-wrap gap-2">
             <ButtonLink to={`/solo?d=${difficulty}`}>Solo</ButtonLink>
-            <Button variant="secondary" onClick={playWithFriends}>
+            <Button
+              variant="secondary"
+              onClick={() => navigate(`/friends?d=${difficulty}`)}
+            >
               With friends
             </Button>
           </div>

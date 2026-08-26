@@ -18,7 +18,7 @@ function renderAt(path: string) {
 function startChallenge() {
   const btn =
     screen.queryByRole('button', { name: 'Beat it' }) ??
-    screen.getByRole('button', { name: 'Just play now' })
+    screen.getByRole('button', { name: 'Play the challenge' })
   fireEvent.click(btn)
 }
 
@@ -43,14 +43,14 @@ test('a broken challenge code shows a friendly fallback', () => {
   )
 })
 
-test('a fresh "with friends" link shows the invite intro with a copyable URL', () => {
+test('an unplayed challenge link shows the intro', () => {
   renderAt(`/c/${seedToCode(500)}?d=easy`)
   expect(
-    screen.getByRole('heading', { name: 'Play with a friend' }),
+    screen.getByRole('heading', { name: 'The challenge' }),
   ).toBeInTheDocument()
-  const input = screen.getByLabelText<HTMLInputElement>('Invite link')
-  expect(input.value).toContain(`/c/${seedToCode(500)}?d=easy`)
-  expect(screen.getByRole('button', { name: 'Copy link' })).toBeInTheDocument()
+  expect(
+    screen.getByRole('button', { name: 'Play the challenge' }),
+  ).toBeInTheDocument()
 })
 
 test('a played link shows the challenger score and "beat it"', () => {
@@ -94,11 +94,11 @@ test('a challenge link plays out and shows the head-to-head', () => {
   expect(screen.getByText(/easy · challenge/i)).toBeInTheDocument()
 })
 
-test('the solo final screen offers a copyable challenge link', () => {
+test('the solo final screen offers a copy-link button', () => {
   renderAt('/solo?d=easy')
   playFullGame()
-  expect(screen.getByLabelText('Challenge link')).toBeInTheDocument()
   expect(
     screen.getByRole('button', { name: 'Copy challenge link' }),
   ).toBeInTheDocument()
+  expect(screen.queryByLabelText('Challenge link')).not.toBeInTheDocument()
 })

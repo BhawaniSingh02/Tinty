@@ -34,7 +34,7 @@ test('difficulty toggle updates the Solo link', () => {
   )
 })
 
-test('"With friends" starts a shareable same-seed game', () => {
+test('"With friends" opens the friends chooser with a challenge link', () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <App />
@@ -42,8 +42,10 @@ test('"With friends" starts a shareable same-seed game', () => {
   )
   fireEvent.click(screen.getByRole('button', { name: 'With friends' }))
   expect(
-    screen.getByRole('heading', { name: 'Play with a friend' }),
+    screen.getByRole('heading', { name: 'play with friends' }),
   ).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Copy link' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Play it' })).toBeInTheDocument()
 })
 
 test('unknown route shows the not-found screen', () => {
