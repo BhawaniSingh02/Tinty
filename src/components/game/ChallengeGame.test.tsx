@@ -43,14 +43,14 @@ test('a broken challenge code shows a friendly fallback', () => {
   )
 })
 
-test('a fresh "with friends" link shows the invite intro', () => {
+test('a fresh "with friends" link shows the invite intro with a copyable URL', () => {
   renderAt(`/c/${seedToCode(500)}?d=easy`)
   expect(
     screen.getByRole('heading', { name: 'Play with a friend' }),
   ).toBeInTheDocument()
-  expect(
-    screen.getByRole('button', { name: 'Share invite link' }),
-  ).toBeInTheDocument()
+  const input = screen.getByLabelText<HTMLInputElement>('Invite link')
+  expect(input.value).toContain(`/c/${seedToCode(500)}?d=easy`)
+  expect(screen.getByRole('button', { name: 'Copy link' })).toBeInTheDocument()
 })
 
 test('a played link shows the challenger score and "beat it"', () => {
@@ -94,10 +94,11 @@ test('a challenge link plays out and shows the head-to-head', () => {
   expect(screen.getByText(/easy · challenge/i)).toBeInTheDocument()
 })
 
-test('the solo final screen offers a challenge link', () => {
+test('the solo final screen offers a copyable challenge link', () => {
   renderAt('/solo?d=easy')
   playFullGame()
+  expect(screen.getByLabelText('Challenge link')).toBeInTheDocument()
   expect(
-    screen.getByRole('button', { name: 'Challenge a friend' }),
+    screen.getByRole('button', { name: 'Copy challenge link' }),
   ).toBeInTheDocument()
 })

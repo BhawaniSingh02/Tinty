@@ -1,9 +1,4 @@
-import {
-  challengeMessage,
-  challengeUrl,
-  parseChallenge,
-  shareChallenge,
-} from './share.ts'
+import { challengeUrl, copyToClipboard, parseChallenge } from './share.ts'
 import { seedToCode } from './rng.ts'
 
 describe('challengeUrl', () => {
@@ -75,51 +70,23 @@ describe('parseChallenge', () => {
   })
 })
 
-describe('challengeMessage', () => {
-  test('pre-fills the brag with the link', () => {
-    expect(challengeMessage(41, 'https://tinty.fun/c/abc123')).toBe(
-      'I got 41.00/50 on Tinty Color Match — closest match wins: https://tinty.fun/c/abc123',
-    )
-  })
-})
-
-describe('shareChallenge', () => {
+describe('copyToClipboard', () => {
   afterEach(() => vi.unstubAllGlobals())
 
-  test('uses the native share sheet when present', async () => {
-    const share = vi.fn().mockResolvedValue(undefined)
-    vi.stubGlobal('navigator', { share })
-    expect(await shareChallenge('msg')).toBe('shared')
-    expect(share).toHaveBeenCalledWith({ text: 'msg' })
-  })
-
-  test('falls back to the clipboard with no share sheet', async () => {
+  test('writes to the clipboard and reports success', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined)
     vi.stubGlobal('navigator', { clipboard: { writeText } })
-    expect(await shareChallenge('msg')).toBe('copied')
-    expect(writeText).toHaveBeenCalledWith('msg')
+    expect(await copyToClipboard('https://tinty.fun/c/abc')).toBe(true)
+    expect(writeText).toHaveBeenCalledWith('https://tinty.fun/c/abc')
   })
 
-  test('reports dismissal when the user cancels the sheet', async () => {
-    const err = Object.assign(new Error('x'), { name: 'AbortError' })
-    vi.stubGlobal('navigator', {
-      share: vi.fn().mockRejectedValue(err),
-      clipboard: { writeText: vi.fn() },
-    })
-    expect(await shareChallenge('msg')).toBe('dismissed')
-  })
-
-  test('falls back to the clipboard when the sheet errors', async () => {
-    const writeText = vi.fn().mockResolvedValue(undefined)
-    vi.stubGlobal('navigator', {
-      share: vi.fn().mockRejectedValue(new Error('boom')),
-      clipboard: { writeText },
-    })
-    expect(await shareChallenge('msg')).toBe('copied')
-  })
-
-  test('fails cleanly when nothing is available', async () => {
+  test('returns false when the clipboard is unavailable or blocked', async () => {
     vi.stubGlobal('navigator', {})
-    expect(await shareChallenge('msg')).toBe('failed')
+    expect(await copyToClipboard('x')).toBe(false)
+
+    vi.stubGlobal('navigator', {
+      clipboard: { writeText: vi.fn().mockRejectedValue(new Error('nope')) },
+    })
+    expect(await copyToClipboard('x')).toBe(false)
   })
 })

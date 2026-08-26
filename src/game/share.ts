@@ -90,49 +90,9 @@ export function challengeUrl(
   return challengeLink(seedToCode(seed), difficulty, score, breakdown, origin)
 }
 
-/** The pre-filled brag that goes with a played challenge link. */
-export function challengeMessage(score: number, url: string): string {
-  return `I got ${score.toFixed(2)}/50 on Tinty Color Match — closest match wins: ${url}`
-}
-
-/** The pre-filled invite for a "play with friends" link shared before playing. */
-export function inviteMessage(url: string): string {
-  return `Play these 5 colors with me on Tinty Color Match: ${url}`
-}
-
-export type ShareResult = 'shared' | 'copied' | 'dismissed' | 'failed'
-
-/**
- * One tap: the native share sheet if the browser has one, otherwise copy the
- * message to the clipboard. `dismissed` means the user backed out of the sheet.
- * The URL is embedded in `message`, so nothing is passed to `share()` as a
- * separate `url` (which some targets would then append a second time).
- */
-export async function shareChallenge(message: string): Promise<ShareResult> {
-  const nav = globalThis.navigator as Navigator | undefined
-
-  if (nav?.share) {
-    try {
-      await nav.share({ text: message })
-      return 'shared'
-    } catch (err) {
-      if ((err as { name?: string } | null)?.name === 'AbortError') {
-        return 'dismissed'
-      }
-      // any other failure — fall through to the clipboard
-    }
-  }
-
-  if (!nav?.clipboard?.writeText) return 'failed'
-  try {
-    await nav.clipboard.writeText(message)
-    return 'copied'
-  } catch {
-    return 'failed'
-  }
-}
-
-/** Plain clipboard copy — used where there's no native-share fallback wanted. */
+/** Copy text to the clipboard. Returns false when it's unavailable / blocked
+ *  (the caller shows the URL for manual selection instead). No native share
+ *  sheet — people copy the link and send it themselves. */
 export async function copyToClipboard(text: string): Promise<boolean> {
   const clip = globalThis.navigator?.clipboard
   if (!clip?.writeText) return false
