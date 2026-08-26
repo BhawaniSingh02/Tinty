@@ -15,8 +15,7 @@
 
   --radius-card: 20px;
 
-  /* The game card's max width. It stays centered and this size on every
-     screen — side ad rails (lg+) sit in the margins without touching it. */
+  /* The game card's max width — centered and this size on every screen. */
   --container-card: 30rem;
 
   --font-sans:
@@ -41,4 +40,28 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Punchy screen-to-screen transition inside the game card (CLAUDE.md: "fast,
+   punchy transitions between rounds — no dead time"). Enter only, no blocking
+   exit. */
+@keyframes tinty-screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.screen-in {
+  animation: tinty-screen-in 160ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-in {
+    animation: none;
+  }
 }

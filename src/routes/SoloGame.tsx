@@ -1,6 +1,26 @@
-import RouteStub from '../components/RouteStub.tsx'
+import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import Layout from '../components/layout/Layout.tsx'
+import GameCard from '../components/layout/GameCard.tsx'
+import ColorMatchGame from '../components/game/ColorMatchGame.tsx'
+import { parseDifficulty } from '../game/difficulty.ts'
+import { randomSeed } from '../game/rng.ts'
 
-// Placeholder — Solo Color Match (5 rounds, /50) lands in build step 4.
 export default function SoloGame() {
-  return <RouteStub title="Solo" />
+  const [params] = useSearchParams()
+  const difficulty = parseDifficulty(params.get('d'))
+  const [seed, setSeed] = useState(randomSeed)
+
+  return (
+    <Layout>
+      <GameCard>
+        <ColorMatchGame
+          key={seed}
+          seed={seed}
+          difficulty={difficulty}
+          onPlayAgain={() => setSeed(randomSeed())}
+        />
+      </GameCard>
+    </Layout>
+  )
 }
