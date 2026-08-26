@@ -1,8 +1,10 @@
-import { useMemo, useReducer } from 'react'
+import { useMemo, useReducer, useRef, useState } from 'react'
 import { gameReducer, initialState } from '../../game/gameReducer.ts'
 import { generateRounds } from '../../game/palette.ts'
-import { ROUNDS } from '../../game/scoring.ts'
+import { ROUNDS, totalScore } from '../../game/scoring.ts'
+import { recordGame, type GameOutcome } from '../../game/storage.ts'
 import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
+import type { GameMode } from '../../game/mode.ts'
 import RevealScreen from './RevealScreen.tsx'
 import HsbPicker from './HsbPicker.tsx'
 import RoundResultScreen from './RoundResultScreen.tsx'
@@ -10,17 +12,21 @@ import FinalScreen from './FinalScreen.tsx'
 
 /**
  * The Color Match loop, driven by one numeric seed. Solo passes a random seed;
- * Challenge and Daily (later steps) pass a shared one. Renders inside <GameCard>.
+ * Challenge passes the seed from the link. Renders inside <GameCard>.
  *
  * Remount (via `key`) to start a fresh game.
  */
 export default function ColorMatchGame({
   seed,
   difficulty,
+  mode = 'solo',
+  challengerScore = null,
   onPlayAgain,
 }: {
   seed: number
   difficulty: Difficulty
+  mode?: GameMode
+  challengerScore?: number | null
   onPlayAgain: () => void
 }) {
   const targets = useMemo(
@@ -30,6 +36,19 @@ export default function ColorMatchGame({
   const [state, dispatch] = useReducer(gameReducer, initialState)
   const { phase, round, guess, results } = state
   const target = targets[round]
+
+  // Persist the finished game once, when the last round wraps up.
+  const [outcome, setOutcome] = useState<GameOutcome | null>(null)
+  const recordedRef = useRef(false)
+
+  const finishRound = () => {
+    if (round === ROUNDS - 1 && !recordedRef.current) {
+      recordedRef.current = true
+      const score = totalScore(results.map((r) => r.points))
+      setOutcome(recordGame({ seed, difficulty, score }))
+    }
+    dispatch({ type: 'next' })
+  }
 
   switch (phase) {
     case 'reveal':
@@ -61,7 +80,7 @@ export default function ColorMatchGame({
           round={round}
           result={results[results.length - 1]}
           isLast={round === ROUNDS - 1}
-          onNext={() => dispatch({ type: 'next' })}
+          onNext={finishRound}
         />
       )
 
@@ -70,6 +89,10 @@ export default function ColorMatchGame({
         <FinalScreen
           results={results}
           difficulty={difficulty}
+          mode={mode}
+          seed={seed}
+          challengerScore={challengerScore}
+          outcome={outcome}
           onPlayAgain={onPlayAgain}
         />
       )

@@ -124,7 +124,7 @@ export function hsbToLab(hsb: Hsb): Lab {
 // --- CSS helpers -------------------------------------------------------------
 
 export function rgbToCss({ r, g, b }: Rgb): string {
-  return `rgb(${r} ${g} ${b})`
+  return `rgb(${r}, ${g}, ${b})`
 }
 
 /** CSS color string for an HSB value (CSS has no hsb(), so via RGB). */

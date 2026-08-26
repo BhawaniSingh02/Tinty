@@ -18,6 +18,7 @@ export default function SoloGame() {
           key={seed}
           seed={seed}
           difficulty={difficulty}
+          mode="solo"
           onPlayAgain={() => setSeed(randomSeed())}
         />
       </GameCard>

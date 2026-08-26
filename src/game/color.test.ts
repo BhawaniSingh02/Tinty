@@ -78,7 +78,7 @@ describe('rgbToLab', () => {
 
 describe('formatting helpers', () => {
   test('hsbToCss', () => {
-    expect(hsbToCss({ h: 0, s: 100, b: 100 })).toBe('rgb(255 0 0)')
+    expect(hsbToCss({ h: 0, s: 100, b: 100 })).toBe('rgb(255, 0, 0)')
   })
 
   test('formatHsb rounds', () => {
