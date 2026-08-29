@@ -1,6 +1,8 @@
+/** Tucked into the bottom-left corner, out of the page's normal flow, so it
+ *  never eats into the game card's vertical space or forces a scrollbar. */
 export default function SiteFooter() {
   return (
-    <footer className="flex w-full shrink-0 justify-center gap-4 px-4 pt-2 pb-4 text-xs text-text-dim/70">
+    <footer className="fixed bottom-3 left-4 z-0 flex items-center gap-2 text-xs text-text-dim/60">
       <a href="/privacy" className="transition-colors hover:text-text-dim">
         Privacy
       </a>

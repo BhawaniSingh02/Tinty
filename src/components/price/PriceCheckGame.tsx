@@ -1,30 +1,60 @@
-import { useMemo, useReducer } from 'react'
+import { useMemo, useReducer, useRef, useState } from 'react'
 import {
   priceGameReducer,
   initialPriceState,
 } from '../../priceGame/gameReducer.ts'
 import { generateRounds } from '../../priceGame/rounds.ts'
-import { ROUNDS } from '../../priceGame/scoring.ts'
+import { ROUNDS, totalScore } from '../../priceGame/scoring.ts'
+import { recordPriceGame, type PriceGameOutcome } from '../../priceGame/storage.ts'
+import { bumpGlobalPlays } from '../../priceGame/leaderboard.ts'
+import type { PriceRoundResult } from '../../priceGame/gameReducer.ts'
+import type { GameMode } from '../../game/mode.ts'
 import PriceQuestionScreen from './PriceQuestionScreen.tsx'
 import PriceRoundResultScreen from './PriceRoundResultScreen.tsx'
 import PriceFinalScreen from './PriceFinalScreen.tsx'
 
 /**
  * The Price Check loop, driven by one numeric seed (same seeded-RNG pattern
- * as Color Match, see game/rng.ts) so a seed can later carry a challenge link
- * or the daily the same way. Renders inside <GameCard>.
+ * as Color Match, see game/rng.ts) so a seed can carry a challenge link, a
+ * live room, or the daily. Renders inside <GameCard>.
+ *
+ * With `onComplete` the parent owns the end screen (the daily does this);
+ * otherwise <PriceFinalScreen> is shown. Remount (via `key`) to start fresh.
  */
 export default function PriceCheckGame({
   seed,
+  mode = 'solo',
+  challengerScore = null,
+  challengerBreakdown = null,
+  onComplete,
   onPlayAgain,
 }: {
   seed: number
+  mode?: GameMode
+  challengerScore?: number | null
+  challengerBreakdown?: number[] | null
+  onComplete?: (results: PriceRoundResult[], score: number) => void
   onPlayAgain: () => void
 }) {
   const rounds = useMemo(() => generateRounds(seed), [seed])
   const [state, dispatch] = useReducer(priceGameReducer, initialPriceState)
   const { phase, round, results } = state
   const item = rounds[round]
+
+  const [outcome, setOutcome] = useState<PriceGameOutcome | null>(null)
+  const [gameNumber, setGameNumber] = useState<number | null>(null)
+  const recordedRef = useRef(false)
+
+  const finishRound = () => {
+    if (round === ROUNDS - 1 && !recordedRef.current) {
+      recordedRef.current = true
+      const score = totalScore(results.map((r) => r.points))
+      setOutcome(recordPriceGame({ score }))
+      void bumpGlobalPlays().then(setGameNumber)
+      onComplete?.(results, score)
+    }
+    dispatch({ type: 'next' })
+  }
 
   switch (phase) {
     case 'question':
@@ -47,11 +77,24 @@ export default function PriceCheckGame({
           round={round}
           result={results[results.length - 1]}
           isLast={round === ROUNDS - 1}
-          onNext={() => dispatch({ type: 'next' })}
+          onNext={finishRound}
         />
       )
 
     case 'final':
-      return <PriceFinalScreen results={results} onPlayAgain={onPlayAgain} />
+      // The daily supplies onComplete and renders its own result screen.
+      if (onComplete) return null
+      return (
+        <PriceFinalScreen
+          results={results}
+          seed={seed}
+          mode={mode}
+          challengerScore={challengerScore}
+          challengerBreakdown={challengerBreakdown}
+          outcome={outcome}
+          gameNumber={gameNumber}
+          onPlayAgain={onPlayAgain}
+        />
+      )
   }
 }

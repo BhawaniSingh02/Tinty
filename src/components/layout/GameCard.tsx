@@ -21,7 +21,8 @@ export default function GameCard({
     <div
       className={[
         'relative flex aspect-[5/6] w-full max-w-card flex-col overflow-hidden',
-        'rounded-card border border-border bg-surface shadow-2xl shadow-black/30',
+        'rounded-card border border-border bg-surface',
+        'shadow-[0_30px_80px_-20px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.03)_inset]',
         className,
       ].join(' ')}
     >

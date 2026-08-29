@@ -44,9 +44,9 @@ export default function PriceRoundResultScreen({
           alt={`${item.brand} ${item.name}`}
           className="size-full object-contain p-6"
         />
-        <div className="absolute right-5 top-4 text-right">
-          <div className="text-5xl font-bold tabular-nums">{points}</div>
-          <div className="text-sm text-text-dim">{caption}</div>
+        <div className="absolute right-4 top-4 rounded-2xl bg-black/55 px-4 py-2.5 text-right text-white shadow-lg backdrop-blur-sm">
+          <div className="text-3xl font-bold leading-none tabular-nums">{points}</div>
+          <div className="mt-1 text-xs text-white/75">{caption}</div>
         </div>
       </div>
 

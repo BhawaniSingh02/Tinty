@@ -10,10 +10,10 @@ import SiteFooter from './SiteFooter.tsx'
  */
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col items-center bg-bg">
+    <div className="flex h-dvh flex-col items-center overflow-hidden bg-bg">
       <SiteHeader />
 
-      <main className="flex w-full flex-1 items-center justify-center px-4 py-6">
+      <main className="flex w-full min-h-0 flex-1 items-center justify-center overflow-y-auto px-4 py-3">
         {children}
       </main>
 

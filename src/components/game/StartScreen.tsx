@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Button, ButtonLink } from '../ui/Button.tsx'
+import GradientRing from '../ui/GradientRing.tsx'
 import DifficultyToggle from '../ui/DifficultyToggle.tsx'
 import { DEFAULT_DIFFICULTY, type Difficulty } from '../../game/difficulty.ts'
 import { MAX_SCORE } from '../../game/scoring.ts'
@@ -61,9 +62,11 @@ export default function StartScreen() {
 
         <DifficultyToggle value={difficulty} onChange={setDifficulty} />
 
-        <ButtonLink to="/daily" variant="secondary">
-          Daily challenge
-        </ButtonLink>
+        <GradientRing>
+          <ButtonLink to="/daily" variant="secondary" className="!border-0">
+            Daily challenge
+          </ButtonLink>
+        </GradientRing>
       </div>
     </div>
   )

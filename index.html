@@ -10,6 +10,15 @@
       content="tinty.fun — free browser mini-games. How well can you remember a color?"
     />
     <title>Tinty — Color Match</title>
+    <script>
+      // Set the theme before first paint so there's no flash of the wrong theme.
+      try {
+        var t = localStorage.getItem('tinty.theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

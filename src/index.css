@@ -5,10 +5,10 @@
    first"). A light-mode toggle comes later; these are the dark values.
    ------------------------------------------------------------------ */
 @theme {
-  --color-bg: #0b0b0d;
-  --color-surface: #151518;
-  --color-surface-2: #1d1d21;
-  --color-border: #26262b;
+  --color-bg: #0a0a0c;
+  --color-surface: #17171b;
+  --color-surface-2: #202024;
+  --color-border: #28282e;
   --color-text: #f2f2f3;
   --color-text-dim: #8a8a92;
   --color-accent: #6d78ff;
@@ -27,6 +27,18 @@
   color-scheme: dark;
 }
 
+/* Light mode — opt-in via [data-theme="light"] (see src/theme.ts). Dark
+   stays the default per CLAUDE.md ("dark-mode first"). */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0f0f2;
+  --color-border: #e3e3e7;
+  --color-text: #161618;
+  --color-text-dim: #6b6b74;
+}
+
 html,
 body,
 #root {
@@ -40,6 +52,48 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient glow behind the page — gives the floating card real depth instead
+   of sitting on a flat fill. Subtle by design (CLAUDE.md: "no clutter"). */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      46rem 30rem at 50% -8rem,
+      color-mix(in oklab, var(--color-accent) 32%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      38rem 26rem at 88% 105%,
+      color-mix(in oklab, #ff5fae 16%, transparent),
+      transparent 72%
+    );
+}
+
+/* The wordmark PNG is black-on-transparent — flip it to white in dark mode
+   so it stays legible against the near-black header. */
+:root:not([data-theme='light']) .site-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* A slim rainbow ring, used sparingly on the daily/vanity buttons — the
+   game's one deliberate spot of color. */
+.tinty-rainbow-ring {
+  background: conic-gradient(
+    from 180deg,
+    #ff5fae,
+    #ffb454,
+    #7ee787,
+    #6d78ff,
+    #ff5fae
+  );
 }
 
 /* Punchy screen-to-screen transition inside the game card (CLAUDE.md: "fast,
