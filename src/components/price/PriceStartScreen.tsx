@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { ButtonLink } from '../ui/Button.tsx'
 import GradientRing from '../ui/GradientRing.tsx'
 import { MAX_SCORE } from '../../priceGame/scoring.ts'
-import { PRICE_ITEMS } from '../../priceGame/items.ts'
 import { loadPriceStats, priceActiveStreak } from '../../priceGame/storage.ts'
 
 /** The Price Check start screen, rendered inside <GameCard>. */
@@ -20,16 +19,6 @@ export default function PriceStartScreen() {
           Five real, branded items. Guess what they actually cost. Five
           rounds, scored out of {MAX_SCORE}.
         </p>
-
-        {PRICE_ITEMS.length > 0 && (
-          <p className="mt-4 text-sm text-text-dim">
-            <span className="text-text">{PRICE_ITEMS.length}</span> items across{' '}
-            <span className="text-text">
-              {new Set(PRICE_ITEMS.map((i) => i.category)).size}
-            </span>{' '}
-            categories
-          </p>
-        )}
 
         {stats.gamesPlayed > 0 && (
           <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-text-dim">

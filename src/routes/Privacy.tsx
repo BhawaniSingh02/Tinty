@@ -101,25 +101,6 @@ export default function Privacy() {
             </ul>
           </Section>
 
-          <Section title="Third-party services">
-            <ul className="list-disc pl-5">
-              <li>
-                <span className="text-text">Vercel</span> — hosting and the
-                anonymous analytics described above.
-              </li>
-              <li>
-                <span className="text-text">Supabase</span> — database for the
-                daily leaderboard and play counter, and the realtime connection
-                for live games.
-              </li>
-              <li>
-                <span className="text-text">Google AdSense</span> — not active
-                yet. When ads go live, Google may set cookies and use data to
-                show ads. This page will be updated before that happens.
-              </li>
-            </ul>
-          </Section>
-
           <Section title="Kids">
             <p>
               The site is fine for all ages and collects nothing that could
@@ -136,7 +117,10 @@ export default function Privacy() {
           <Section title="Contact">
             <p>
               Questions? Email{' '}
-              <span className="text-text">[your-email@example.com]</span>.
+              <a href="mailto:bhonii.banna@gmail.com" className="text-accent">
+                bhonii.banna@gmail.com
+              </a>
+              .
             </p>
           </Section>
 
