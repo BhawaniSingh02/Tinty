@@ -12,6 +12,7 @@ import PriceFriendsRoute from './routes/PriceFriendsRoute.tsx'
 import PriceChallengeGame from './routes/PriceChallengeGame.tsx'
 import PriceLiveRoute from './routes/PriceLiveRoute.tsx'
 import PriceDailyGame from './routes/PriceDailyGame.tsx'
+import Privacy from './routes/Privacy.tsx'
 import NotFound from './routes/NotFound.tsx'
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/price/c/:code" element={<PriceChallengeGame />} />
         <Route path="/price/live/:code" element={<PriceLiveRoute />} />
         <Route path="/price/daily" element={<PriceDailyGame />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* Passive — renders nothing, sends pageviews only on the Vercel deploy. */}
