@@ -12,9 +12,7 @@ export default function PriceStartScreen() {
   return (
     <div className="flex h-full flex-col justify-between p-7 sm:p-9">
       <div>
-        <h1 className="text-4xl font-bold lowercase tracking-tight sm:text-5xl">
-          price check
-        </h1>
+        <h1 className="display text-4xl lowercase sm:text-5xl">price guess</h1>
         <p className="mt-4 max-w-sm text-base text-text-dim">
           Five real, branded items. Guess what they actually cost. Five
           rounds, scored out of {MAX_SCORE}.

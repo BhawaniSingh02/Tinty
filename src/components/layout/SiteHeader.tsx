@@ -11,10 +11,10 @@ function NavLink({ to, label, active }: { to: string; label: string; active: boo
     <Link
       to={to}
       className={[
-        'rounded-full px-4 py-1.5 text-sm font-semibold lowercase tracking-tight transition-all',
+        'rounded-full border px-4 py-1.5 text-sm font-semibold lowercase tracking-tight transition-all',
         active
-          ? 'bg-accent text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08)_inset,0_4px_16px_-4px_var(--color-accent)]'
-          : 'text-text-dim hover:text-text',
+          ? 'border-transparent bg-text text-bg shadow-[0_1px_2px_rgba(0,0,0,0.15),0_4px_12px_-4px_rgba(0,0,0,0.35)]'
+          : 'border-border bg-surface text-text-dim hover:border-text-dim/40 hover:text-text',
       ].join(' ')}
     >
       {label}
@@ -30,10 +30,10 @@ export default function SiteHeader() {
   const [color, price] = TABS
 
   return (
-    <header className="relative flex w-full shrink-0 items-center justify-center px-4 py-2.5">
-      <div className="flex items-center gap-6 sm:gap-8">
+    <header className="relative flex w-full shrink-0 items-center justify-center px-4 py-2.5 after:pointer-events-none after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-full after:max-w-card after:-translate-x-1/2 after:bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--color-border)_90%,var(--color-text)),transparent)]">
+      <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
         <NavLink to={color.to} label={color.label} active={color.match(pathname)} />
-        <Link to="/" className="block transition-opacity hover:opacity-80">
+        <Link to="/" className="block px-3 transition-opacity hover:opacity-80">
           <img src="/logo.png" alt="tinty" className="site-logo h-6 w-auto sm:h-7" />
         </Link>
         <NavLink to={price.to} label={price.label} active={price.match(pathname)} />

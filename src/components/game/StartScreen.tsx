@@ -21,9 +21,7 @@ export default function StartScreen() {
   return (
     <div className="flex h-full flex-col justify-between p-7 sm:p-9">
       <div>
-        <h1 className="text-4xl font-bold lowercase tracking-tight sm:text-5xl">
-          color match
-        </h1>
+        <h1 className="display text-4xl lowercase sm:text-5xl">color match</h1>
         <p className="mt-4 max-w-sm text-base text-text-dim">
           Watch five colors, then recreate them from memory. Five rounds, scored
           out of 50.

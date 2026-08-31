@@ -5,10 +5,10 @@
    first"). A light-mode toggle comes later; these are the dark values.
    ------------------------------------------------------------------ */
 @theme {
-  --color-bg: #0a0a0c;
-  --color-surface: #17171b;
-  --color-surface-2: #202024;
-  --color-border: #28282e;
+  --color-bg: #121216;
+  --color-surface: #1c1c21;
+  --color-surface-2: #26262c;
+  --color-border: #313139;
   --color-text: #f2f2f3;
   --color-text-dim: #8a8a92;
   --color-accent: #6d78ff;
@@ -19,8 +19,10 @@
   --container-card: 30rem;
 
   --font-sans:
-    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif;
+  --font-display:
+    'Clash Display', 'Satoshi', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -50,10 +52,21 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv01', 'cv03';
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   position: relative;
   overflow-x: hidden;
+}
+
+/* Big headline type — heavy, tight, and lowercase, matching the game card's
+   spare display voice. Applied via the .display utility on <h1>-scale text. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
 /* Ambient glow behind the page — gives the floating card real depth instead
