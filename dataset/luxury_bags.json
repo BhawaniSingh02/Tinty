@@ -9,7 +9,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "fjallraven.com official product page (Classic Kånken Backpack), checked Aug 2026",
-    "local_image": "/images/luxury-bags/fjallraven-kanken-classic-backpack.jpg"
+    "local_image": "/images/luxury-bags/fjallraven-kanken-classic-backpack.webp"
   },
   {
     "category": "luxury bags",
@@ -32,7 +32,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "herschel.com official product page (Little America Backpack), checked Aug 2026",
-    "local_image": "/images/luxury-bags/herschel-little-america-backpack.jpg"
+    "local_image": "/images/luxury-bags/herschel-little-america-backpack.webp"
   },
   {
     "category": "luxury bags",
@@ -44,7 +44,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "herschel.com official product page (Nova Backpack, regular price before sale discount), checked Aug 2026",
-    "local_image": "/images/luxury-bags/herschel-nova-backpack.jpg"
+    "local_image": "/images/luxury-bags/herschel-nova-backpack.webp"
   },
   {
     "category": "luxury bags",
@@ -56,7 +56,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "longchamp.com official product page (Le Pliage Original L Tote, black recycled canvas), checked Aug 2026",
-    "local_image": "/images/luxury-bags/longchamp-le-pliage-original-l-tote-bag.png"
+    "local_image": "/images/luxury-bags/longchamp-le-pliage-original-l-tote-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -68,7 +68,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "dkny.com official product page (Paula Medium Commuter Tote), checked Aug 2026",
-    "local_image": "/images/luxury-bags/dkny-paula-medium-commuter-tote.jpg"
+    "local_image": "/images/luxury-bags/dkny-paula-medium-commuter-tote.webp"
   },
   {
     "category": "luxury bags",
@@ -80,7 +80,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "dkny.com official product page (Capri Medium Hobo Bag), checked Aug 2026",
-    "local_image": "/images/luxury-bags/dkny-capri-medium-hobo-bag.jpg"
+    "local_image": "/images/luxury-bags/dkny-capri-medium-hobo-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -92,7 +92,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "dkny.com official product page (Willa Mini Satchel), checked Aug 2026",
-    "local_image": "/images/luxury-bags/dkny-willa-mini-satchel.jpg"
+    "local_image": "/images/luxury-bags/dkny-willa-mini-satchel.webp"
   },
   {
     "category": "luxury bags",
@@ -104,7 +104,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "coach.com official product page (Tabby Shoulder Bag 20, style CY201), checked Aug 2026",
-    "local_image": "/images/luxury-bags/coach-tabby-shoulder-bag-20.jpg"
+    "local_image": "/images/luxury-bags/coach-tabby-shoulder-bag-20.webp"
   },
   {
     "category": "luxury bags",
@@ -116,7 +116,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "coach.com official product page (Tabby Shoulder Bag 26, style CH857), checked Aug 2026",
-    "local_image": "/images/luxury-bags/coach-tabby-shoulder-bag-26.jpg"
+    "local_image": "/images/luxury-bags/coach-tabby-shoulder-bag-26.webp"
   },
   {
     "category": "luxury bags",
@@ -128,7 +128,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "michaelkors.com official product page (Jet Set Medium Tote Bag, regular listed price), checked Aug 2026",
-    "local_image": "/images/luxury-bags/michael-kors-jet-set-medium-tote-bag.jpg"
+    "local_image": "/images/luxury-bags/michael-kors-jet-set-medium-tote-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -140,7 +140,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "michaelkors.com official product page (Voyager Medium Logo Tote Bag), checked Aug 2026",
-    "local_image": "/images/luxury-bags/michael-kors-voyager-medium-logo-tote-bag.jpg"
+    "local_image": "/images/luxury-bags/michael-kors-voyager-medium-logo-tote-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -152,7 +152,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "toryburch.com official product page (Miller Classic Shoulder Bag, original listed price), checked Aug 2026",
-    "local_image": "/images/luxury-bags/tory-burch-miller-classic-shoulder-bag.jpg"
+    "local_image": "/images/luxury-bags/tory-burch-miller-classic-shoulder-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -164,7 +164,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "toryburch.com official product page (Mini Miller Crossbody Bag), checked Aug 2026",
-    "local_image": "/images/luxury-bags/tory-burch-mini-miller-crossbody-bag.jpg"
+    "local_image": "/images/luxury-bags/tory-burch-mini-miller-crossbody-bag.webp"
   },
   {
     "category": "luxury bags",
@@ -198,7 +198,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "loewe.com official product page (Small Puzzle Edge bag in soft grained calfskin, Deep Navy), checked Aug 2026",
-    "local_image": "/images/luxury-bags/loewe-small-puzzle-edge-bag-soft-grained-calfskin.jpg"
+    "local_image": "/images/luxury-bags/loewe-small-puzzle-edge-bag-soft-grained-calfskin.webp"
   },
   {
     "category": "luxury bags",
@@ -210,6 +210,6 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Chanel's official April 2026 US price increase for the Medium Classic Flap, as reported by FASHIONPHILE and PurseBlog citing Chanel boutique pricing, checked Aug 2026",
-    "local_image": "/images/luxury-bags/chanel-classic-double-flap-bag-medium-2-55.jpg"
+    "local_image": "/images/luxury-bags/chanel-classic-double-flap-bag-medium-2-55.webp"
   }
 ]

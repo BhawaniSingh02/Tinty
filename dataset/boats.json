@@ -9,7 +9,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Official Sea-Doo model lineup page, sea-doo.brp.com/us/en/models/personal-watercrafts.html, ~Aug 2026",
-    "local_image": "/images/boats/sea-doo-spark.jpg"
+    "local_image": "/images/boats/sea-doo-spark.webp"
   },
   {
     "category": "boats",
@@ -21,7 +21,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official Sea-Doo model lineup page (RXT-X 350 starting price), sea-doo.brp.com/us/en/models/personal-watercrafts.html, ~Aug 2026",
-    "local_image": "/images/boats/sea-doo-rxt-x-300.jpg"
+    "local_image": "/images/boats/sea-doo-rxt-x-300.webp"
   },
   {
     "category": "boats",
@@ -33,7 +33,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Official Yamaha WaveRunner site, yamahawaverunners.com/waverunner/models/vx/, ~Aug 2026",
-    "local_image": "/images/boats/yamaha-waverunner-vx.png"
+    "local_image": "/images/boats/yamaha-waverunner-vx.webp"
   },
   {
     "category": "boats",
@@ -45,7 +45,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official Yamaha WaveRunner site, yamahawaverunners.com/waverunner/models/fx-ho/, ~Aug 2026",
-    "local_image": "/images/boats/yamaha-waverunner-fx-ho.png"
+    "local_image": "/images/boats/yamaha-waverunner-fx-ho.webp"
   },
   {
     "category": "boats",
@@ -57,7 +57,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official Yamaha Boats site, yamahaboats.com/boats/categories/18-ft-boats/SX180/, ~Aug 2026",
-    "local_image": "/images/boats/yamaha-sx180.png"
+    "local_image": "/images/boats/yamaha-sx180.webp"
   },
   {
     "category": "boats",
@@ -69,7 +69,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official Yamaha Boats site, yamahaboats.com/boats/categories/25-ft-boats/252S/, ~Aug 2026",
-    "local_image": "/images/boats/yamaha-252s.png"
+    "local_image": "/images/boats/yamaha-252s.webp"
   },
   {
     "category": "boats",
@@ -81,7 +81,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official Yamaha Boats site, yamahaboats.com/boats/categories/29-ft-boats/295sd/, ~Aug 2026",
-    "local_image": "/images/boats/yamaha-295sd.png"
+    "local_image": "/images/boats/yamaha-295sd.webp"
   },
   {
     "category": "boats",
@@ -105,7 +105,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Official Tracker Boats site, 'No Haggle No Hassle National Price', trackerboats.com/jon/grizzly-1436-jon.html, ~Aug 2026",
-    "local_image": "/images/boats/tracker-grizzly-1436-jon-boat.jpg"
+    "local_image": "/images/boats/tracker-grizzly-1436-jon-boat.webp"
   },
   {
     "category": "boats",
@@ -117,7 +117,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Official Tracker Boats site (base price for boat + 40HP Mercury motor + trailer package), trackerboats.com/bass/bass-tracker-classic-xl.html, ~Aug 2026",
-    "local_image": "/images/boats/tracker-bass-tracker-classic-xl.jpg"
+    "local_image": "/images/boats/tracker-bass-tracker-classic-xl.webp"
   },
   {
     "category": "boats",
@@ -129,6 +129,6 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official Tracker Boats site (base price for boat + 60HP Mercury motor + trailer package), trackerboats.com/bass/pro-team-175-txw.html, ~Aug 2026",
-    "local_image": "/images/boats/tracker-pro-team-175-txw.jpg"
+    "local_image": "/images/boats/tracker-pro-team-175-txw.webp"
   }
 ]

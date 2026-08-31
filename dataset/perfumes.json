@@ -9,7 +9,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "chanel.com product listing, N°5 Eau de Parfum Spray 3.4 fl. oz., verified via Google site-search snippet of chanel.com, ~Aug 2026",
-    "local_image": "/images/perfumes/chanel-n-5-eau-de-parfum-100ml.jpg"
+    "local_image": "/images/perfumes/chanel-n-5-eau-de-parfum-100ml.webp"
   },
   {
     "category": "perfumes",
@@ -21,7 +21,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "chanel.com fragrance bestsellers listing, ~Aug 2026",
-    "local_image": "/images/perfumes/chanel-coco-mademoiselle-eau-de-parfum.jpg"
+    "local_image": "/images/perfumes/chanel-coco-mademoiselle-eau-de-parfum.webp"
   },
   {
     "category": "perfumes",
@@ -33,7 +33,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "creedboutique.com/products/aventus, 100ml listing, ~Aug 2026",
-    "local_image": "/images/perfumes/creed-aventus-eau-de-parfum-100ml.jpg"
+    "local_image": "/images/perfumes/creed-aventus-eau-de-parfum-100ml.webp"
   },
   {
     "category": "perfumes",
@@ -45,7 +45,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "tomford.com / tomfordbeauty.com product listing, Black Orchid Eau de Parfum 1.7 fl oz, ~Aug 2026",
-    "local_image": "/images/perfumes/tom-ford-black-orchid-eau-de-parfum-50ml.png"
+    "local_image": "/images/perfumes/tom-ford-black-orchid-eau-de-parfum-50ml.webp"
   },
   {
     "category": "perfumes",
@@ -68,7 +68,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "hugoboss.com product listing, BOSS Bottled Eau de Parfum 100 ml, ~Aug 2026",
-    "local_image": "/images/perfumes/hugo-boss-boss-bottled-eau-de-parfum-100ml.jpg"
+    "local_image": "/images/perfumes/hugo-boss-boss-bottled-eau-de-parfum-100ml.webp"
   },
   {
     "category": "perfumes",
@@ -80,7 +80,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "marcjacobs.com product listing, Daisy Eau De Toilette 100 mL, ~Aug 2026",
-    "local_image": "/images/perfumes/marc-jacobs-daisy-eau-de-toilette-100ml.jpg"
+    "local_image": "/images/perfumes/marc-jacobs-daisy-eau-de-toilette-100ml.webp"
   },
   {
     "category": "perfumes",
@@ -92,7 +92,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "rabanne.com product listing, 1 Million Eau de Toilette, ~Aug 2026",
-    "local_image": "/images/perfumes/paco-rabanne-1-million-eau-de-toilette.jpg"
+    "local_image": "/images/perfumes/paco-rabanne-1-million-eau-de-toilette.webp"
   },
   {
     "category": "perfumes",
@@ -115,7 +115,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "dolcegabbana.com product listing, Light Blue Pour Homme Eau de Toilette, ~Aug 2026",
-    "local_image": "/images/perfumes/dolce-gabbana-light-blue-pour-homme-eau-de-toilette.jpg"
+    "local_image": "/images/perfumes/dolce-gabbana-light-blue-pour-homme-eau-de-toilette.webp"
   },
   {
     "category": "perfumes",
@@ -127,7 +127,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "arianagrandefragrances.com/products/cloud, 3.4oz/100ml listing (matches Ulta/Sephora retail price of $75), ~Aug 2026",
-    "local_image": "/images/perfumes/ariana-grande-cloud-eau-de-parfum-100ml-3-4oz.jpg"
+    "local_image": "/images/perfumes/ariana-grande-cloud-eau-de-parfum-100ml-3-4oz.webp"
   },
   {
     "category": "perfumes",
@@ -139,7 +139,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "calvinklein.us product listing, ck one spray, price range $84.00–$98.00 depending on size; lowest listed price used, ~Aug 2026",
-    "local_image": "/images/perfumes/calvin-klein-ck-one-eau-de-toilette-spray.jpg"
+    "local_image": "/images/perfumes/calvin-klein-ck-one-eau-de-toilette-spray.webp"
   },
   {
     "category": "perfumes",
@@ -151,6 +151,6 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "nautica.com product listing, Nautica Voyage N-83 3.4oz, ~Aug 2026",
-    "local_image": "/images/perfumes/nautica-voyage-n-83-eau-de-toilette-3-4oz.jpg"
+    "local_image": "/images/perfumes/nautica-voyage-n-83-eau-de-toilette-3-4oz.webp"
   }
 ]

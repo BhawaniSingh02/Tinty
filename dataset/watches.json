@@ -9,7 +9,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Casio's own direct retail price for the F-91W, as reported by HiConsumption's hands-on review of the casio.com listing (checked Aug 2026)",
-    "local_image": "/images/watches/casio-casio-f-91w-1.jpg"
+    "local_image": "/images/watches/casio-casio-f-91w-1.webp"
   },
   {
     "category": "watches",
@@ -21,7 +21,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "MSRP as tracked by camelcamelcamel for Casio A158WA-1 (checked Aug 2026)",
-    "local_image": "/images/watches/casio-casio-a158wa-1-vintage-digital.jpg"
+    "local_image": "/images/watches/casio-casio-a158wa-1-vintage-digital.webp"
   },
   {
     "category": "watches",
@@ -33,7 +33,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "timex.com official Weekender New England product listing (checked Aug 2026)",
-    "local_image": "/images/watches/timex-timex-weekender.gif"
+    "local_image": "/images/watches/timex-timex-weekender.webp"
   },
   {
     "category": "watches",
@@ -45,7 +45,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "citizenwatch.com official product page for BN0000-04H (fetched directly, Aug 2026)",
-    "local_image": "/images/watches/citizen-citizen-promaster-dive-eco-drive-bn0000-04h.jpg"
+    "local_image": "/images/watches/citizen-citizen-promaster-dive-eco-drive-bn0000-04h.webp"
   },
   {
     "category": "watches",
@@ -57,7 +57,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "seikowatches.com US official 5 Sports collection pricing (checked Aug 2026)",
-    "local_image": "/images/watches/seiko-seiko-5-sports-srpg35.jpg"
+    "local_image": "/images/watches/seiko-seiko-5-sports-srpg35.webp"
   },
   {
     "category": "watches",
@@ -69,7 +69,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official Tissot retail price as reported by thewatchology.com review of tissotwatches.com listing (checked Aug 2026)",
-    "local_image": "/images/watches/tissot-tissot-prx-powermatic-80.jpg"
+    "local_image": "/images/watches/tissot-tissot-prx-powermatic-80.webp"
   },
   {
     "category": "watches",
@@ -81,7 +81,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "hamiltonwatch.com official product page for Khaki Field Mechanical 38mm (checked Aug 2026)",
-    "local_image": "/images/watches/hamilton-hamilton-khaki-field-mechanical-38mm-h69439931.jpg"
+    "local_image": "/images/watches/hamilton-hamilton-khaki-field-mechanical-38mm-h69439931.webp"
   },
   {
     "category": "watches",
@@ -93,7 +93,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "tagheuer.com official Calibre 5 pricing as aggregated by WatchCharts (checked Aug 2026)",
-    "local_image": "/images/watches/tag-heuer-tag-heuer-carrera-calibre-5-automatic.jpg"
+    "local_image": "/images/watches/tag-heuer-tag-heuer-carrera-calibre-5-automatic.webp"
   },
   {
     "category": "watches",
@@ -105,7 +105,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "longines.com official steel HydroConquest MSRP, as cited in Teddy Baldassarre's HydroConquest review (checked Aug 2026)",
-    "local_image": "/images/watches/longines-longines-hydroconquest-41mm-steel.jpg"
+    "local_image": "/images/watches/longines-longines-hydroconquest-41mm-steel.webp"
   },
   {
     "category": "watches",
@@ -117,7 +117,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "cartier.com official product page CRWSTA0107 (fetched directly, Aug 2026)",
-    "local_image": "/images/watches/cartier-tank-must-de-cartier-small-steel.jpg"
+    "local_image": "/images/watches/cartier-tank-must-de-cartier-small-steel.webp"
   },
   {
     "category": "watches",
@@ -129,7 +129,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "grand-seiko.com official US retail price for SBGW231, as cited by monochrome-watches.com review (checked Aug 2026)",
-    "local_image": "/images/watches/grand-seiko-grand-seiko-elegance-sbgw231.jpg"
+    "local_image": "/images/watches/grand-seiko-grand-seiko-elegance-sbgw231.webp"
   },
   {
     "category": "watches",
@@ -141,7 +141,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "omegawatches.com official steel Seamaster Diver 300M pricing, as aggregated by market listings referencing the omegawatches.com product page 21030422003001 (checked Aug 2026)",
-    "local_image": "/images/watches/omega-omega-seamaster-diver-300m-co-axial-master-chronometer-42mm.jpg"
+    "local_image": "/images/watches/omega-omega-seamaster-diver-300m-co-axial-master-chronometer-42mm.webp"
   },
   {
     "category": "watches",
@@ -153,7 +153,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "iwc.com official Portugieser Automatic 40 steel pricing, as aggregated by WatchCharts referencing IWC list price (checked Aug 2026)",
-    "local_image": "/images/watches/iwc-iwc-portugieser-automatic-40-stainless-steel.jpg"
+    "local_image": "/images/watches/iwc-iwc-portugieser-automatic-40-stainless-steel.webp"
   },
   {
     "category": "watches",
@@ -165,7 +165,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "zenith-watches.com official Chronomaster Original stainless-steel pricing (checked Aug 2026)",
-    "local_image": "/images/watches/zenith-zenith-chronomaster-original-38mm.jpg"
+    "local_image": "/images/watches/zenith-zenith-chronomaster-original-38mm.webp"
   },
   {
     "category": "watches",
@@ -177,7 +177,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Rolex official 2026 US retail price for ref. 126610LN, as reported by multiple authorized-dealer price guides (checked Aug 2026)",
-    "local_image": "/images/watches/rolex-rolex-submariner-date-126610ln.jpg"
+    "local_image": "/images/watches/rolex-rolex-submariner-date-126610ln.webp"
   },
   {
     "category": "watches",
@@ -189,7 +189,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "breitling.com official Navitimer B01 Chronograph 46 pricing (checked Aug 2026)",
-    "local_image": "/images/watches/breitling-breitling-navitimer-b01-chronograph-46.jpg"
+    "local_image": "/images/watches/breitling-breitling-navitimer-b01-chronograph-46.webp"
   },
   {
     "category": "watches",
@@ -201,7 +201,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Authorized Patek Philippe dealer Essential Watches, listing official retail price for ref. 5196G-001 (checked Aug 2026)",
-    "local_image": "/images/watches/patek-philippe-patek-philippe-calatrava-5196g-001.jpg"
+    "local_image": "/images/watches/patek-philippe-patek-philippe-calatrava-5196g-001.webp"
   },
   {
     "category": "watches",
@@ -213,6 +213,6 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "audemarspiguet.com official retail price for Royal Oak Offshore Diver 15720ST, as aggregated by WatchCharts (checked Aug 2026)",
-    "local_image": "/images/watches/audemars-piguet-royal-oak-offshore-diver-15720st.jpg"
+    "local_image": "/images/watches/audemars-piguet-royal-oak-offshore-diver-15720st.webp"
   }
 ]

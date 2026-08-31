@@ -9,7 +9,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "apple.com official store, https://www.apple.com/shop/buy-airtag/airtag, checked Aug 2026 (1-pack $29.00)",
-    "local_image": "/images/tech-gadgets/apple-airtag.jpg"
+    "local_image": "/images/tech-gadgets/apple-airtag.webp"
   },
   {
     "category": "tech gadgets",
@@ -21,7 +21,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Wikipedia-cited official introductory US price for Chromecast with Google TV (HD), released Sept 2022; en.wikipedia.org/wiki/Google_Chromecast, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/google-chromecast-with-google-tv-hd.jpg"
+    "local_image": "/images/tech-gadgets/google-chromecast-with-google-tv-hd.webp"
   },
   {
     "category": "tech gadgets",
@@ -33,7 +33,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Wikipedia-cited official Amazon price for base Kindle 11 (2024) with ads: $109.99; en.wikipedia.org/wiki/Amazon_Kindle, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/amazon-kindle-11th-generation-2024.jpg"
+    "local_image": "/images/tech-gadgets/amazon-kindle-11th-generation-2024.webp"
   },
   {
     "category": "tech gadgets",
@@ -45,7 +45,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "apple.com official store, https://www.apple.com/shop/buy-airpods/airpods-4, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/apple-airpods-4-with-active-noise-cancellation.jpg"
+    "local_image": "/images/tech-gadgets/apple-airpods-4-with-active-noise-cancellation.webp"
   },
   {
     "category": "tech gadgets",
@@ -57,7 +57,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Wikipedia-cited official Sonos introductory US price ($199); en.wikipedia.org/wiki/Sonos_One, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/sonos-sonos-one-gen-2.jpg"
+    "local_image": "/images/tech-gadgets/sonos-sonos-one-gen-2.webp"
   },
   {
     "category": "tech gadgets",
@@ -69,7 +69,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "apple.com official store, https://www.apple.com/shop/buy-ipad/ipad, checked Aug 2026 (128GB Wi-Fi model)",
-    "local_image": "/images/tech-gadgets/apple-ipad-10th-generation.png"
+    "local_image": "/images/tech-gadgets/apple-ipad-10th-generation.webp"
   },
   {
     "category": "tech gadgets",
@@ -81,7 +81,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Wikipedia-cited official Apple starting price ($399); en.wikipedia.org/wiki/Apple_Watch, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/apple-apple-watch-series-10.jpg"
+    "local_image": "/images/tech-gadgets/apple-apple-watch-series-10.webp"
   },
   {
     "category": "tech gadgets",
@@ -93,7 +93,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "bose.com official store product listing, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/bose-quietcomfort-ultra-earbuds.jpg"
+    "local_image": "/images/tech-gadgets/bose-quietcomfort-ultra-earbuds.webp"
   },
   {
     "category": "tech gadgets",
@@ -105,7 +105,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Wikipedia-cited official Xbox US price after 2025 adjustment ($399.99); en.wikipedia.org/wiki/Xbox_Series_X_and_Series_S, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/microsoft-xbox-series-s.png"
+    "local_image": "/images/tech-gadgets/microsoft-xbox-series-s.webp"
   },
   {
     "category": "tech gadgets",
@@ -117,7 +117,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Wikipedia-cited official Nintendo US launch price ($449.99, June 5, 2025); en.wikipedia.org/wiki/Nintendo_Switch_2, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/nintendo-nintendo-switch-2.jpg"
+    "local_image": "/images/tech-gadgets/nintendo-nintendo-switch-2.webp"
   },
   {
     "category": "tech gadgets",
@@ -129,7 +129,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "samsung.com official store, https://www.samsung.com/us/smartphones/galaxy-s25-ultra/, checked Aug 2026 (before trade-in credit)",
-    "local_image": "/images/tech-gadgets/samsung-galaxy-s25-ultra.jpg"
+    "local_image": "/images/tech-gadgets/samsung-galaxy-s25-ultra.webp"
   },
   {
     "category": "tech gadgets",
@@ -141,7 +141,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "apple.com official store, https://www.apple.com/shop/buy-iphone/iphone-17-pro, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/apple-iphone-17-pro.jpg"
+    "local_image": "/images/tech-gadgets/apple-iphone-17-pro.webp"
   },
   {
     "category": "tech gadgets",
@@ -153,7 +153,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "store.dji.com official store, https://store.dji.com/product/dji-mini-4-pro, checked Aug 2026 (standard version w/ RC-N2 controller)",
-    "local_image": "/images/tech-gadgets/dji-dji-mini-4-pro.jpg"
+    "local_image": "/images/tech-gadgets/dji-dji-mini-4-pro.webp"
   },
   {
     "category": "tech gadgets",
@@ -165,6 +165,6 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Wikipedia-cited official Sony launch price, body only ($2,499); en.wikipedia.org/wiki/Sony_α7_IV, checked Aug 2026",
-    "local_image": "/images/tech-gadgets/sony-alpha-7-iv-ilce-7m4.jpg"
+    "local_image": "/images/tech-gadgets/sony-alpha-7-iv-ilce-7m4.webp"
   }
 ]

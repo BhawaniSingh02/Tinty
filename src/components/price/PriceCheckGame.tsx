@@ -1,4 +1,4 @@
-import { useMemo, useReducer, useRef, useState } from 'react'
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import {
   priceGameReducer,
   initialPriceState,
@@ -37,6 +37,16 @@ export default function PriceCheckGame({
   onPlayAgain: () => void
 }) {
   const rounds = useMemo(() => generateRounds(seed), [seed])
+
+  // Warm every round's image the moment the game mounts, so by the time the
+  // player finishes typing round 1 the rest are already in the browser cache
+  // and each screen swap is instant. (Images are now ~60KB WebP.)
+  useEffect(() => {
+    for (const r of rounds) {
+      const img = new Image()
+      img.src = r.local_image ?? r.image_url
+    }
+  }, [rounds])
   const [state, dispatch] = useReducer(priceGameReducer, initialPriceState)
   const { phase, round, results } = state
   const item = rounds[round]

@@ -9,7 +9,7 @@
     "currency": "GBP",
     "tier": "low",
     "price_source": "Official Dacia UK site (dacia.co.uk), Essential TCe 100 MY26 trim, MRRP, found Aug 2026",
-    "local_image": "/images/cars/dacia-sandero.jpg"
+    "local_image": "/images/cars/dacia-sandero.webp"
   },
   {
     "category": "cars",
@@ -21,7 +21,7 @@
     "currency": "GBP",
     "tier": "low",
     "price_source": "Kia UK official press office (kiapressoffice.com), entry '2' 1.0 petrol trim RRP, found Aug 2026",
-    "local_image": "/images/cars/kia-picanto.jpg"
+    "local_image": "/images/cars/kia-picanto.webp"
   },
   {
     "category": "cars",
@@ -33,7 +33,7 @@
     "currency": "GBP",
     "tier": "low",
     "price_source": "Hyundai UK press release (hyundai.news / hyundai.co.uk), on-the-road RRP, found Aug 2026",
-    "local_image": "/images/cars/hyundai-i10.jpg"
+    "local_image": "/images/cars/hyundai-i10.webp"
   },
   {
     "category": "cars",
@@ -45,7 +45,7 @@
     "currency": "USD",
     "tier": "low",
     "price_source": "Nissan USA official newsroom (usa.nissannews.com) press release, most recent official base MSRP found, Aug 2026",
-    "local_image": "/images/cars/nissan-versa.jpg"
+    "local_image": "/images/cars/nissan-versa.webp"
   },
   {
     "category": "cars",
@@ -57,7 +57,7 @@
     "currency": "EUR",
     "tier": "low",
     "price_source": "Italian market pricing for Grande Panda Pop trim, sourced via italpassion.fr, found Aug 2026",
-    "local_image": "/images/cars/fiat-grande-panda.jpg"
+    "local_image": "/images/cars/fiat-grande-panda.webp"
   },
   {
     "category": "cars",
@@ -69,7 +69,7 @@
     "currency": "GBP",
     "tier": "low",
     "price_source": "Official Suzuki Cars UK site (cars.suzuki.co.uk), on-the-road RRP, found Aug 2026",
-    "local_image": "/images/cars/suzuki-swift.jpg"
+    "local_image": "/images/cars/suzuki-swift.webp"
   },
   {
     "category": "cars",
@@ -81,7 +81,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Toyota USA official Newsroom (pressroom.toyota.com), LE grade base MSRP, found Aug 2026",
-    "local_image": "/images/cars/toyota-corolla.jpg"
+    "local_image": "/images/cars/toyota-corolla.webp"
   },
   {
     "category": "cars",
@@ -93,7 +93,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official Honda automobiles site (automobiles.honda.com), base MSRP, found Aug 2026",
-    "local_image": "/images/cars/honda-civic-sedan.jpg"
+    "local_image": "/images/cars/honda-civic-sedan.webp"
   },
   {
     "category": "cars",
@@ -105,7 +105,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official mazdausa.com vehicle page, 2.5 S base trim MSRP (excl. destination), fetched directly Aug 2026",
-    "local_image": "/images/cars/mazda-mazda3-sedan.jpg"
+    "local_image": "/images/cars/mazda-mazda3-sedan.webp"
   },
   {
     "category": "cars",
@@ -117,7 +117,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official VW USA Media newsroom (media.vw.com), Jetta S base MSRP, found Aug 2026",
-    "local_image": "/images/cars/volkswagen-jetta.jpg"
+    "local_image": "/images/cars/volkswagen-jetta.webp"
   },
   {
     "category": "cars",
@@ -129,7 +129,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Cars.com/KBB, citing Chevrolet official pricing, LT trim incl. destination (chevrolet.com pricing page did not render in fetch), found Aug 2026",
-    "local_image": "/images/cars/chevrolet-equinox.jpg"
+    "local_image": "/images/cars/chevrolet-equinox.webp"
   },
   {
     "category": "cars",
@@ -141,7 +141,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Subaru of America official U.S. Media Center press release (media.subaru.com), Impreza Sport base MSRP, found Aug 2026",
-    "local_image": "/images/cars/subaru-impreza.jpg"
+    "local_image": "/images/cars/subaru-impreza.webp"
   },
   {
     "category": "cars",
@@ -153,7 +153,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official hyundaiusa.com, SE trim base MSRP, found Aug 2026",
-    "local_image": "/images/cars/hyundai-elantra.jpg"
+    "local_image": "/images/cars/hyundai-elantra.webp"
   },
   {
     "category": "cars",
@@ -165,7 +165,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official ford.com pricing page, base MSRP, found Aug 2026",
-    "local_image": "/images/cars/ford-escape.jpg"
+    "local_image": "/images/cars/ford-escape.webp"
   },
   {
     "category": "cars",
@@ -177,7 +177,7 @@
     "currency": "USD",
     "tier": "mid",
     "price_source": "Official genesis.com (genesis.com/us/en/g70), base MSRP, found Aug 2026",
-    "local_image": "/images/cars/genesis-g70.jpg"
+    "local_image": "/images/cars/genesis-g70.webp"
   },
   {
     "category": "cars",
@@ -189,7 +189,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "bmwusa.com-derived figure via dealer/Edmunds aggregation citing official MSRP, 330i Sedan incl. destination, found Aug 2026",
-    "local_image": "/images/cars/bmw-330i-3-series.jpg"
+    "local_image": "/images/cars/bmw-330i-3-series.webp"
   },
   {
     "category": "cars",
@@ -201,7 +201,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official mbusa.com vehicle page (C300 4MATIC), base MSRP, fetched directly Aug 2026",
-    "local_image": "/images/cars/mercedes-benz-c300-4matic-sedan.jpg"
+    "local_image": "/images/cars/mercedes-benz-c300-4matic-sedan.webp"
   },
   {
     "category": "cars",
@@ -213,7 +213,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official audiusa.com (media.audiusa.com newsroom), base MSRP, found Aug 2026",
-    "local_image": "/images/cars/audi-a5.jpg"
+    "local_image": "/images/cars/audi-a5.webp"
   },
   {
     "category": "cars",
@@ -225,7 +225,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Cars.com citing Volvo official offers page (volvocars.com/us/offers), Core AWD trim incl. destination, found Aug 2026",
-    "local_image": "/images/cars/volvo-xc60.jpg"
+    "local_image": "/images/cars/volvo-xc60.webp"
   },
   {
     "category": "cars",
@@ -237,7 +237,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official tesla.com (tesla.com/model3), RWD base MSRP excl. destination/order fee, found Aug 2026",
-    "local_image": "/images/cars/tesla-model-3.jpg"
+    "local_image": "/images/cars/tesla-model-3.webp"
   },
   {
     "category": "cars",
@@ -249,7 +249,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Official porsche.com USA model page, base Carrera MSRP, found Aug 2026",
-    "local_image": "/images/cars/porsche-911-carrera.jpg"
+    "local_image": "/images/cars/porsche-911-carrera.webp"
   },
   {
     "category": "cars",
@@ -261,7 +261,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Kelley Blue Book, citing Bentley official sticker price for base Continental GT coupe, found Aug 2026",
-    "local_image": "/images/cars/bentley-continental-gt.jpg"
+    "local_image": "/images/cars/bentley-continental-gt.webp"
   },
   {
     "category": "cars",
@@ -273,7 +273,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Kelley Blue Book, citing Ferrari official base MSRP (2024 model year, most recent figure available), found Aug 2026",
-    "local_image": "/images/cars/ferrari-roma.jpg"
+    "local_image": "/images/cars/ferrari-roma.webp"
   },
   {
     "category": "cars",
@@ -285,7 +285,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Kelley Blue Book, citing Lamborghini official base MSRP for Urus S (2024 model year, plus $3,995 destination not included), found Aug 2026",
-    "local_image": "/images/cars/lamborghini-urus-s.jpg"
+    "local_image": "/images/cars/lamborghini-urus-s.webp"
   },
   {
     "category": "cars",
@@ -297,7 +297,7 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Kelley Blue Book, citing McLaren official base MSRP (2026 model year), found Aug 2026",
-    "local_image": "/images/cars/mclaren-artura.jpg"
+    "local_image": "/images/cars/mclaren-artura.webp"
   },
   {
     "category": "cars",
@@ -309,6 +309,6 @@
     "currency": "USD",
     "tier": "high",
     "price_source": "Edmunds, citing Land Rover official base MSRP (excl. $1,850 destination), found Aug 2026",
-    "local_image": "/images/cars/land-rover-range-rover-sport.jpg"
+    "local_image": "/images/cars/land-rover-range-rover-sport.webp"
   }
 ]
