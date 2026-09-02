@@ -15,12 +15,19 @@ export const MAX_SCORE = ROUNDS * MAX_POINTS_PER_ROUND // 50
  * barely cost anything — then rolls off once the colors are visibly apart and
  * tails to 0 for a wildly wrong guess.
  *
- *   ΔE   1  →  9.8      ΔE  10  →  6.0      ΔE  30  →  0.9
- *   ΔE   3  →  9.0      ΔE  15  →  4.0      ΔE  45  →  0.1
- *   ΔE   5  →  8.2      ΔE  20  →  2.6      ΔE ≥48  →  0
+ * FALLOFF was widened 16 → 33 after checking our old curve against dialed.gg's
+ * (their live formula, confirmed by inspection, is 10/(1+(ΔE/25.25)^1.55)). We
+ * were far too harsh in the mid-range — a same-family-but-clearly-off guess
+ * (ΔE00 ≈ 20–25) scored ~1.5 where it should sit near 5. This keeps our own
+ * exponential shape, just gentler; no hue/sat fudge, no jitter — pure ΔE00.
+ *
+ *   ΔE   1  →  9.9      ΔE  13  →  7.6      ΔE  30  →  4.2
+ *   ΔE   3  →  9.7      ΔE  17  →  6.7      ΔE  45  →  2.1
+ *   ΔE   5  →  9.3      ΔE  20  →  6.1      ΔE  65  →  0.8
+ *   ΔE  10  →  8.3      ΔE  25  →  5.1      ΔE ≥75  →  ~0
  */
 export const SCORE_PERFECT_DE = 0.8
-export const SCORE_FALLOFF = 16
+export const SCORE_FALLOFF = 33
 export const SCORE_SHARPNESS = 1.4
 
 /** Points (0–10, 2 dp) for a ΔE00 value. */

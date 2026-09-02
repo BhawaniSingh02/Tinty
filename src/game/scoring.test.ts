@@ -14,15 +14,19 @@ describe('pointsForDeltaE', () => {
   })
 
   test('a barely-noticeable miss barely costs anything', () => {
-    expect(pointsForDeltaE(2)).toBeGreaterThan(9)
-    expect(pointsForDeltaE(3.5)).toBeGreaterThan(8.5)
+    expect(pointsForDeltaE(2)).toBeGreaterThan(9.5)
+    expect(pointsForDeltaE(3.5)).toBeGreaterThan(9)
   })
 
-  test('a clearly-different color scores low, a wildly wrong one → 0', () => {
-    expect(pointsForDeltaE(10)).toBeGreaterThan(4)
-    expect(pointsForDeltaE(10)).toBeLessThan(7)
-    expect(pointsForDeltaE(30)).toBeLessThan(1)
-    expect(pointsForDeltaE(60)).toBe(0)
+  test('mid-range is forgiving (retuned against dialed.gg), tail still dies off', () => {
+    // ΔE00 ~10 is "close but off" — should sit in the 8s, not the 6s.
+    expect(pointsForDeltaE(10)).toBeGreaterThan(7.5)
+    expect(pointsForDeltaE(10)).toBeLessThan(9)
+    // ΔE00 ~25 is "same family, clearly wrong" — near half marks.
+    expect(pointsForDeltaE(25)).toBeGreaterThan(4)
+    expect(pointsForDeltaE(25)).toBeLessThan(6)
+    // Far out still tails toward zero.
+    expect(pointsForDeltaE(45)).toBeLessThan(3)
     expect(pointsForDeltaE(999)).toBe(0)
   })
 
@@ -47,10 +51,12 @@ describe('scoreRound', () => {
     expect(scoreRound(c, c)).toBe(10)
   })
 
-  test('complementary hue at full saturation → 0', () => {
-    expect(scoreRound({ h: 120, s: 90, b: 60 }, { h: 300, s: 90, b: 60 })).toBe(
-      0,
-    )
+  test('complementary hue at full saturation scores near zero', () => {
+    // ΔE00 ≈ 90. The retuned curve is gentler, so this bottoms out just above
+    // 0 rather than clamping to it — still a decisive fail.
+    expect(
+      scoreRound({ h: 120, s: 90, b: 60 }, { h: 300, s: 90, b: 60 }),
+    ).toBeLessThan(0.5)
   })
 
   test('hue error matters far less at low saturation than at high', () => {

@@ -58,7 +58,7 @@ export default function PriceFinalScreen({
         ) : (
           <>
             <div className="mt-3 text-6xl font-bold tabular-nums">
-              {total}
+              {total.toFixed(2)}
               <span className="ml-1 text-2xl font-semibold text-text-dim">
                 / {MAX_SCORE}
               </span>
@@ -73,7 +73,7 @@ export default function PriceFinalScreen({
                   </span>
                 ) : (
                   <span className="text-text-dim">
-                    Best {outcome.previousBest} / {MAX_SCORE}
+                    Best {outcome.previousBest.toFixed(0)} / {MAX_SCORE}
                   </span>
                 )}
                 {streak > 1 && (
@@ -96,7 +96,7 @@ export default function PriceFinalScreen({
                 {r.item.brand} {r.item.name}
               </span>
               <span className="ml-2 shrink-0 font-semibold tabular-nums">
-                {r.points} / 10
+                {r.points.toFixed(2)} / 10
               </span>
             </div>
           ))}

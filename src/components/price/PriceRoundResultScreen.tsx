@@ -39,7 +39,9 @@ export default function PriceRoundResultScreen({
         </span>
         <span className="flex items-baseline gap-2 rounded-full bg-surface-2 px-3 py-1">
           <span className="text-xs text-text-dim">{caption}</span>
-          <span className="text-base font-bold tabular-nums">{points}</span>
+          <span className="text-base font-bold tabular-nums">
+            {points.toFixed(2)}
+          </span>
         </span>
       </div>
 

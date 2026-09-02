@@ -4,9 +4,9 @@ function pick(lines: readonly string[]): string {
   return lines[Math.floor(Math.random() * lines.length)]
 }
 
-/** A one-liner for a single round's points (0, 2, 5, 8, or 10). */
+/** A one-liner for a single round's points (0–10). */
 export function roundCaption(points: number): string {
-  if (points >= 10) return pick(['Nailed it.', 'Dead on.', 'You shop here.'])
+  if (points >= 9.5) return pick(['Nailed it.', 'Dead on.', 'You shop here.'])
   if (points >= 8) return pick(['So close.', 'Barely off.', 'Good eye.'])
   if (points >= 5) return pick(['In the ballpark.', 'Not bad.', 'Ish.'])
   if (points >= 2) return pick(['Way off.', 'Not quite.', 'Hmm.'])

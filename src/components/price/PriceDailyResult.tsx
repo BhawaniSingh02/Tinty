@@ -61,7 +61,7 @@ export default function PriceDailyResult({
           price check · daily · {ymd}
         </div>
         <div className="mt-1 text-4xl font-bold tabular-nums">
-          {score}
+          {score.toFixed(2)}
           <span className="ml-1 text-xl font-semibold text-text-dim">
             / {MAX_SCORE}
           </span>

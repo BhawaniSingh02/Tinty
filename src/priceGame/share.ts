@@ -18,10 +18,12 @@ export interface ParsedPriceChallenge {
   challengerBreakdown: number[] | null
 }
 
+const round2 = (n: number) => Math.round(n * 100) / 100
+
 function parseScore(raw: string | null): number | null {
   if (raw === null) return null
   const n = Number.parseFloat(raw)
-  return Number.isFinite(n) && n >= 0 && n <= MAX_SCORE ? n : null
+  return Number.isFinite(n) && n >= 0 && n <= MAX_SCORE ? round2(n) : null
 }
 
 function parseBreakdown(raw: string | null): number[] | null {
@@ -33,7 +35,7 @@ function parseBreakdown(raw: string | null): number[] | null {
   ) {
     return null
   }
-  return parts
+  return parts.map(round2)
 }
 
 /** Parse `/price/c/:code` + its query, or null if the code is unusable. */
@@ -64,9 +66,9 @@ export function priceChallengeLink(
   origin: string = currentOrigin(),
 ): string {
   const params = new URLSearchParams()
-  if (score !== undefined) params.set('s', String(score))
+  if (score !== undefined) params.set('s', String(round2(score)))
   if (breakdown && breakdown.length === ROUNDS) {
-    params.set('b', breakdown.join('_'))
+    params.set('b', breakdown.map((n) => String(round2(n))).join('_'))
   }
   const qs = params.toString()
   return `${origin}/price/c/${code}${qs ? `?${qs}` : ''}`
