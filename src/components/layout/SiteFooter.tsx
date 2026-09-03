@@ -7,6 +7,14 @@ export default function SiteFooter() {
         Privacy
       </a>
       <span aria-hidden="true">·</span>
+      <a href="/about" className="transition-colors hover:text-text-dim">
+        About
+      </a>
+      <span aria-hidden="true">·</span>
+      <a href="/contact" className="transition-colors hover:text-text-dim">
+        Contact
+      </a>
+      <span aria-hidden="true">·</span>
       <span>tinty.fun</span>
     </footer>
   )
