@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom'
 import Layout from '../components/layout/Layout.tsx'
 import GameCard from '../components/layout/GameCard.tsx'
+import Seo from '../components/Seo.tsx'
 
 export default function Contact() {
   return (
     <Layout>
+      <Seo
+        path="/contact"
+        title="Contact Tinty — support & feedback"
+        description="Get in touch with Tinty. Send bugs, ideas, or feedback about our free online memory and guessing games — one email, no form."
+      />
       <GameCard>
         <div className="flex h-full flex-col gap-5 overflow-y-auto p-6">
           <header className="flex flex-col gap-1">

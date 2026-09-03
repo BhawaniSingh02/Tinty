@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Per-player challenge and live-room links carry no unique indexable content.
+Disallow: /c/
+Disallow: /live/
+Disallow: /price/c/
+Disallow: /price/live/
+
+Sitemap: https://tinty.fun/sitemap.xml

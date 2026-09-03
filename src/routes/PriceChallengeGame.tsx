@@ -5,6 +5,7 @@ import GameCard from '../components/layout/GameCard.tsx'
 import PriceCheckGame from '../components/price/PriceCheckGame.tsx'
 import PriceChallengeIntro from '../components/price/PriceChallengeIntro.tsx'
 import BadCode from '../components/game/BadCode.tsx'
+import Seo from '../components/Seo.tsx'
 import { parsePriceChallenge } from '../priceGame/share.ts'
 
 /**
@@ -32,6 +33,11 @@ export default function PriceChallengeGame() {
 
   return (
     <Layout>
+      <Seo
+        noindex
+        title="Can you beat my Price Guess score? | Tinty"
+        description="A friend challenged you to guess the price game — same five items, closest guesses win. Free to play, no sign-up."
+      />
       <GameCard>
         {started ? (
           <PriceCheckGame

@@ -4,6 +4,7 @@ import GameCard from '../components/layout/GameCard.tsx'
 import PriceCheckGame from '../components/price/PriceCheckGame.tsx'
 import PriceDailyIntro from '../components/price/PriceDailyIntro.tsx'
 import PriceDailyResult from '../components/price/PriceDailyResult.tsx'
+import Seo from '../components/Seo.tsx'
 import {
   getPriceDailyResult,
   markPriceDailyPlayed,
@@ -50,6 +51,11 @@ export default function PriceDailyGame() {
 
   return (
     <Layout>
+      <Seo
+        path="/price/daily"
+        title="Daily Price Guess challenge | Tinty"
+        description="One guess-the-price round a day — the same five items for everyone, one shot each. Post your score to the daily leaderboard."
+      />
       <GameCard>{body}</GameCard>
     </Layout>
   )

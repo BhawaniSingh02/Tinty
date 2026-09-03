@@ -4,6 +4,7 @@ import GameCard from '../components/layout/GameCard.tsx'
 import ColorMatchGame from '../components/game/ColorMatchGame.tsx'
 import DailyIntro from '../components/game/DailyIntro.tsx'
 import DailyResult from '../components/game/DailyResult.tsx'
+import Seo from '../components/Seo.tsx'
 import {
   getDailyResult,
   markDailyPlayed,
@@ -51,6 +52,11 @@ export default function DailyGame() {
 
   return (
     <Layout>
+      <Seo
+        path="/daily"
+        title="Daily Color Match challenge | Tinty"
+        description="One color memory puzzle a day — the same five colors for everyone on Earth, one shot each. Post your score to the daily leaderboard."
+      />
       <GameCard>{body}</GameCard>
     </Layout>
   )

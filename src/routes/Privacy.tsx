@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../components/layout/Layout.tsx'
 import GameCard from '../components/layout/GameCard.tsx'
+import Seo from '../components/Seo.tsx'
 
 /**
  * Plain-language privacy policy. Kept deliberately short — Tinty is a casual
@@ -34,6 +35,11 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 export default function Privacy() {
   return (
     <Layout>
+      <Seo
+        path="/privacy"
+        title="Privacy — Tinty"
+        description="How Tinty handles data: no accounts, no personal information, just local scores and anonymous pageviews."
+      />
       <GameCard>
         <div className="flex h-full flex-col gap-5 overflow-y-auto p-6">
           <header className="flex flex-col gap-1">

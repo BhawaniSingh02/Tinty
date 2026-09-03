@@ -5,6 +5,7 @@ import GameCard from '../components/layout/GameCard.tsx'
 import ColorMatchGame from '../components/game/ColorMatchGame.tsx'
 import ChallengeIntro from '../components/game/ChallengeIntro.tsx'
 import BadCode from '../components/game/BadCode.tsx'
+import Seo from '../components/Seo.tsx'
 import { parseChallenge } from '../game/share.ts'
 
 /**
@@ -31,6 +32,11 @@ export default function ChallengeGame() {
 
   return (
     <Layout>
+      <Seo
+        noindex
+        title="Can you beat my Color Match score? | Tinty"
+        description="A friend challenged you to a color memory game — same five colors, closest match wins. Free to play, no sign-up."
+      />
       <GameCard>
         {started ? (
           <ColorMatchGame
