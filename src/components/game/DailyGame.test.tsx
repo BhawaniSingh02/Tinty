@@ -2,15 +2,16 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import DailyGame from '../../routes/DailyGame.tsx'
 
-vi.mock('../../game/leaderboard.ts', () => ({
-  submitDailyScore: vi.fn().mockResolvedValue({ rank: 2, total: 7 }),
-  fetchDailyLeaderboard: vi.fn().mockResolvedValue([
-    { tag: 'ZZZ', score: 47.5, rank: 1 },
-    { tag: 'ABC', score: 30, rank: 2 },
+vi.mock('../../leaderboards/api.ts', () => ({
+  fetchBoard: vi.fn().mockResolvedValue([
+    { deviceId: 'a', name: 'Zoe', score: 47.5, rank: 1 },
+    { deviceId: 'b', name: 'Abe', score: 30, rank: 2 },
   ]),
-  fetchStanding: vi.fn().mockResolvedValue({ rank: 2, total: 7 }),
-  fetchGlobalPlays: vi.fn().mockResolvedValue(500),
-  bumpGlobalPlays: vi.fn().mockResolvedValue(501),
+  fetchMyStanding: vi.fn().mockResolvedValue(null),
+  submitScore: vi
+    .fn()
+    .mockResolvedValue({ rank: 2, total: 7, score: 30, name: 'Bhoni' }),
+  subscribeToBoard: vi.fn(() => () => {}),
 }))
 
 beforeEach(() => {
@@ -34,7 +35,7 @@ function playFullGame() {
   }
 }
 
-test('intro → play → submit → standing + leaderboard', async () => {
+test('intro → play → post name → standing + leaderboard', async () => {
   renderDaily()
   expect(screen.getByRole('heading', { name: 'daily' })).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Play the daily' }))
@@ -43,13 +44,13 @@ test('intro → play → submit → standing + leaderboard', async () => {
 
   expect(await screen.findByText(/daily ·/i)).toBeInTheDocument()
 
-  const tag = screen.getByLabelText('Your initials')
-  fireEvent.change(tag, { target: { value: 'me!' } })
-  expect(tag).toHaveValue('ME')
+  const nameInput = screen.getByLabelText('Display name for the leaderboard')
+  fireEvent.change(nameInput, { target: { value: 'Bhoni' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Post to leaderboard' }))
 
-  fireEvent.click(screen.getByRole('button', { name: 'Submit score' }))
-  expect(await screen.findByText('#2 of 7 today')).toBeInTheDocument()
-  expect(screen.getByText('1. ZZZ')).toBeInTheDocument()
+  expect(await screen.findByText('#2')).toBeInTheDocument()
+  expect(screen.getByText(/of 7/)).toBeInTheDocument()
+  expect(await screen.findByText('Zoe')).toBeInTheDocument()
 })
 
 test('a second visit the same day skips straight to the result', () => {
@@ -65,15 +66,15 @@ test('a second visit the same day skips straight to the result', () => {
   ).not.toBeInTheDocument()
 })
 
-test('an already-submitted daily does not offer submit again', () => {
+test('an already-posted daily does not offer to post again', () => {
   const ymd = new Date().toISOString().slice(0, 10)
   localStorage.setItem(
     `tinty.daily.${ymd}`,
-    JSON.stringify({ score: 22, breakdown: [10, 5, 4, 2, 1], submitted: true }),
+    JSON.stringify({ score: 22, breakdown: [10, 5, 4, 2, 1], posted: true }),
   )
   renderDaily()
   expect(screen.getByText(/22\.00/)).toBeInTheDocument()
   expect(
-    screen.queryByRole('button', { name: 'Submit score' }),
+    screen.queryByRole('button', { name: /post to leaderboard|post as/i }),
   ).not.toBeInTheDocument()
 })

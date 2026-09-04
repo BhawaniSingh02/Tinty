@@ -1,15 +1,30 @@
 import { Button, ButtonLink } from '../ui/Button.tsx'
 import HeadToHead from './HeadToHead.tsx'
+import PbSubmit from '../leaderboard/PbSubmit.tsx'
+import LeaderboardLink from '../leaderboard/LeaderboardLink.tsx'
 import { roomStandings } from '../../game/live.ts'
+import type { LeaderboardCategory } from '../../leaderboards/config.ts'
 import type { LiveRoom } from '../../hooks/useLiveRoom.ts'
+
+/** What the parent worked out about *my* finished game, for the leaderboard. */
+export interface LiveMyResult {
+  score: number
+  breakdown: number[]
+  isNewBest: boolean
+}
 
 /** Room results — updates live as other players finish their rounds. */
 export default function LiveStandings({
   room,
+  category,
   onRematch,
+  myResult,
 }: {
   room: LiveRoom
+  /** the all-time board this room's mode feeds (color:easy | color:hard | price:solo) */
+  category: LeaderboardCategory
   onRematch?: () => void
+  myResult?: LiveMyResult | null
 }) {
   const board = roomStandings(room.players, room.scores)
   const everyoneDone = board.length > 0 && board.every((s) => s.done)
@@ -78,11 +93,23 @@ export default function LiveStandings({
         )}
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {onRematch && <Button onClick={onRematch}>Rematch</Button>}
-        <ButtonLink to="/" variant="secondary">
-          Home
-        </ButtonLink>
+      <div className="flex flex-col gap-3">
+        {myResult ? (
+          <PbSubmit
+            category={category}
+            score={myResult.score}
+            breakdown={myResult.breakdown}
+            isNewBest={myResult.isNewBest}
+          />
+        ) : (
+          <LeaderboardLink category={category} />
+        )}
+        <div className="flex flex-wrap gap-2">
+          {onRematch && <Button onClick={onRematch}>Rematch</Button>}
+          <ButtonLink to="/" variant="secondary">
+            Home
+          </ButtonLink>
+        </div>
       </div>
     </div>
   )

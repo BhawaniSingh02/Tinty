@@ -6,6 +6,7 @@ import FriendsRoute from './routes/FriendsRoute.tsx'
 import ChallengeGame from './routes/ChallengeGame.tsx'
 import LiveRoute from './routes/LiveRoute.tsx'
 import DailyGame from './routes/DailyGame.tsx'
+import Leaderboard from './routes/Leaderboard.tsx'
 import PriceHome from './routes/PriceHome.tsx'
 import PriceSoloGame from './routes/PriceSoloGame.tsx'
 import PriceFriendsRoute from './routes/PriceFriendsRoute.tsx'
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/c/:code" element={<ChallengeGame />} />
         <Route path="/live/:code" element={<LiveRoute />} />
         <Route path="/daily" element={<DailyGame />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/price" element={<PriceHome />} />
         <Route path="/price/solo" element={<PriceSoloGame />} />
         <Route path="/price/friends" element={<PriceFriendsRoute />} />

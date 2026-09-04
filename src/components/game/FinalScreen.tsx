@@ -3,6 +3,8 @@ import { Button, ButtonLink } from '../ui/Button.tsx'
 import DiagonalSwatch from './DiagonalSwatch.tsx'
 import HeadToHead from './HeadToHead.tsx'
 import ShareButton from './ShareButton.tsx'
+import PbSubmit from '../leaderboard/PbSubmit.tsx'
+import { findCategory } from '../../leaderboards/config.ts'
 import type { RoundResult } from '../../game/gameReducer.ts'
 import { MAX_SCORE, totalScore } from '../../game/scoring.ts'
 import { scoreCaption } from '../../game/captions.ts'
@@ -40,6 +42,7 @@ export default function FinalScreen({
   const caption = useMemo(() => scoreCaption(total), [total])
   const streak = outcome ? activeStreak(outcome.stats) : 0
   const isChallenge = challengerScore !== null
+  const category = findCategory(`color:${difficulty}`)
 
   return (
     <div className="screen-in flex h-full flex-col justify-between p-7">
@@ -103,6 +106,14 @@ export default function FinalScreen({
       )}
 
       <div className="flex flex-col gap-2">
+        {category && (
+          <PbSubmit
+            category={category}
+            score={total}
+            breakdown={breakdown}
+            isNewBest={outcome?.isNewBest ?? false}
+          />
+        )}
         <ShareButton
           seed={seed}
           difficulty={difficulty}

@@ -1,6 +1,24 @@
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle.tsx'
 
+function TrophyIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="size-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 4h12v4a6 6 0 0 1-12 0V4Z" />
+      <path d="M6 6H4a2 2 0 0 0 0 4h2M18 6h2a2 2 0 0 1 0 4h-2M9 20h6M12 14v6" />
+    </svg>
+  )
+}
+
 const TABS = [
   { to: '/', label: 'color', match: (p: string) => !p.startsWith('/price') },
   { to: '/price', label: 'price', match: (p: string) => p.startsWith('/price') },
@@ -38,6 +56,20 @@ export default function SiteHeader() {
         </Link>
         <NavLink to={price.to} label={price.label} active={price.match(pathname)} />
       </div>
+
+      <Link
+        to="/leaderboard"
+        aria-label="Leaderboards"
+        className={[
+          'absolute left-4 top-4 flex h-8 items-center gap-1.5 rounded-full border border-border bg-surface px-2 transition-colors hover:text-text',
+          pathname === '/leaderboard' ? 'text-text' : 'text-text-dim',
+        ].join(' ')}
+      >
+        <TrophyIcon />
+        <span className="hidden pr-0.5 text-xs font-semibold sm:inline">
+          Leaderboard
+        </span>
+      </Link>
 
       <div className="absolute right-4 top-4">
         <ThemeToggle />

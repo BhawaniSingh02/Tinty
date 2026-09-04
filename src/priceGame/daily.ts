@@ -30,7 +30,7 @@ export interface PriceDailyOutcome {
   score: number
   breakdown: number[]
   /** True once this device has posted the score to the leaderboard. */
-  submitted?: boolean
+  posted?: boolean
 }
 
 const playedKey = (ymd: string) => `tinty.price.daily.${ymd}`
@@ -66,8 +66,8 @@ export function markPriceDailyPlayed(ymd: string, outcome: PriceDailyOutcome): v
   writeDaily(ymd, outcome)
 }
 
-/** Record that the score has been posted, so we don't offer submit again. */
-export function markPriceDailySubmitted(ymd: string): void {
+/** Record that the score has been posted, so we don't offer to post again. */
+export function markPriceDailyPosted(ymd: string): void {
   const current = getPriceDailyResult(ymd)
-  if (current) writeDaily(ymd, { ...current, submitted: true })
+  if (current) writeDaily(ymd, { ...current, posted: true })
 }

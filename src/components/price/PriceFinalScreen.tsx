@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 import { Button, ButtonLink } from '../ui/Button.tsx'
 import HeadToHead from '../game/HeadToHead.tsx'
 import PriceShareButton from './PriceShareButton.tsx'
+import PbSubmit from '../leaderboard/PbSubmit.tsx'
+import { findCategory } from '../../leaderboards/config.ts'
 import type { PriceRoundResult } from '../../priceGame/gameReducer.ts'
 import { MAX_SCORE, totalScore } from '../../priceGame/scoring.ts'
 import { scoreCaption } from '../../priceGame/captions.ts'
@@ -36,6 +38,7 @@ export default function PriceFinalScreen({
   const caption = useMemo(() => scoreCaption(total), [total])
   const streak = outcome ? priceActiveStreak(outcome.stats) : 0
   const isChallenge = challengerScore !== null
+  const category = findCategory('price:solo')
 
   return (
     <div className="screen-in flex h-full flex-col justify-between p-7">
@@ -104,6 +107,14 @@ export default function PriceFinalScreen({
       )}
 
       <div className="flex flex-col gap-2">
+        {category && (
+          <PbSubmit
+            category={category}
+            score={total}
+            breakdown={breakdown}
+            isNewBest={outcome?.isNewBest ?? false}
+          />
+        )}
         <PriceShareButton seed={seed} score={total} breakdown={breakdown} />
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="secondary" onClick={onPlayAgain}>
