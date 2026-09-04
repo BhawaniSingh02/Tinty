@@ -132,3 +132,34 @@ body::before {
     animation: none;
   }
 }
+
+/* Post-game install prompt — slides up from the bottom like a native sheet,
+   sits below the score card, never blocks it. */
+.install-sheet {
+  transform: translateY(calc(100% + 1.5rem));
+  opacity: 0;
+  transition:
+    transform 340ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 240ms ease-out;
+}
+
+.install-sheet[data-open='true'] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.install-backdrop {
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+}
+
+.install-backdrop[data-open='true'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-sheet,
+  .install-backdrop {
+    transition-duration: 1ms;
+  }
+}

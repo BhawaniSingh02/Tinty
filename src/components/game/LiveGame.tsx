@@ -1,5 +1,6 @@
-import { useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from 'react'
 import { gameReducer, initialState } from '../../game/gameReducer.ts'
+import { notifyGameComplete } from '../../game/installPrompt.ts'
 import { generateRounds } from '../../game/palette.ts'
 import { ROUNDS, scoreRound } from '../../game/scoring.ts'
 import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
@@ -28,6 +29,10 @@ export default function LiveGame({
   )
   const [state, dispatch] = useReducer(gameReducer, initialState)
   const { phase, round, guess, results } = state
+
+  useEffect(() => {
+    if (phase === 'final') notifyGameComplete()
+  }, [phase])
 
   if (phase === 'final') {
     return (

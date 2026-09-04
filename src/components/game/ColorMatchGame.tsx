@@ -4,6 +4,7 @@ import { generateRounds } from '../../game/palette.ts'
 import { ROUNDS, totalScore } from '../../game/scoring.ts'
 import { recordGame, type GameOutcome } from '../../game/storage.ts'
 import { bumpGlobalPlays } from '../../game/leaderboard.ts'
+import { notifyGameComplete } from '../../game/installPrompt.ts'
 import { DIFFICULTY_CONFIG, type Difficulty } from '../../game/difficulty.ts'
 import type { RoundResult } from '../../game/gameReducer.ts'
 import type { GameMode } from '../../game/mode.ts'
@@ -54,6 +55,7 @@ export default function ColorMatchGame({
       const score = totalScore(results.map((r) => r.points))
       setOutcome(recordGame({ seed, difficulty, score }))
       void bumpGlobalPlays().then(setGameNumber)
+      notifyGameComplete()
       onComplete?.(results, score)
     }
     dispatch({ type: 'next' })

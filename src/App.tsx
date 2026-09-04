@@ -16,6 +16,7 @@ import Privacy from './routes/Privacy.tsx'
 import About from './routes/About.tsx'
 import Contact from './routes/Contact.tsx'
 import NotFound from './routes/NotFound.tsx'
+import InstallPrompt from './components/layout/InstallPrompt.tsx'
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <InstallPrompt />
       {/* Passive — renders nothing, sends pageviews only on the Vercel deploy. */}
       <Analytics />
     </>
