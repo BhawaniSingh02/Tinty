@@ -9,7 +9,7 @@
  * Bump CACHE_VERSION whenever you want every client to drop its old shell
  * cache on next load.
  */
-const CACHE_VERSION = 'tinty-shell-v1'
+const CACHE_VERSION = 'tinty-shell-v2'
 
 // Static things we can name up front. Hashed JS/CSS bundles are picked up at
 // runtime by the stale-while-revalidate handler below.
@@ -19,8 +19,11 @@ const PRECACHE = [
   '/manifest.json',
   '/favicon.svg',
   '/logo.png',
+  '/icons/favicon-16.png',
+  '/icons/favicon-32.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/icons/apple-touch-icon.png',
 ]
 
 self.addEventListener('install', (event) => {
