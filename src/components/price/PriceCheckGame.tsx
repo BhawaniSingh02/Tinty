@@ -7,6 +7,7 @@ import { generateRounds } from '../../priceGame/rounds.ts'
 import { ROUNDS, totalScore } from '../../priceGame/scoring.ts'
 import { recordPriceGame, type PriceGameOutcome } from '../../priceGame/storage.ts'
 import { bumpGlobalPlays } from '../../priceGame/leaderboard.ts'
+import { notifyGameComplete } from '../../game/installPrompt.ts'
 import type { PriceRoundResult } from '../../priceGame/gameReducer.ts'
 import type { GameMode } from '../../game/mode.ts'
 import PriceQuestionScreen from './PriceQuestionScreen.tsx'
@@ -61,6 +62,7 @@ export default function PriceCheckGame({
       const score = totalScore(results.map((r) => r.points))
       setOutcome(recordPriceGame({ score }))
       void bumpGlobalPlays().then(setGameNumber)
+      notifyGameComplete()
       onComplete?.(results, score)
     }
     dispatch({ type: 'next' })

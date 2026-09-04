@@ -1,8 +1,9 @@
-import { useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from 'react'
 import {
   priceGameReducer,
   initialPriceState,
 } from '../../priceGame/gameReducer.ts'
+import { notifyGameComplete } from '../../game/installPrompt.ts'
 import { generateRounds } from '../../priceGame/rounds.ts'
 import { ROUNDS, scoreGuess } from '../../priceGame/scoring.ts'
 import type { LiveRoom } from '../../hooks/useLiveRoom.ts'
@@ -21,6 +22,10 @@ export default function PriceLiveGame({ room }: { room: LiveRoom }) {
   const rounds = useMemo(() => generateRounds(room.seed), [room.seed])
   const [state, dispatch] = useReducer(priceGameReducer, initialPriceState)
   const { phase, round, results } = state
+
+  useEffect(() => {
+    if (phase === 'final') notifyGameComplete()
+  }, [phase])
 
   if (phase === 'final') {
     return (
