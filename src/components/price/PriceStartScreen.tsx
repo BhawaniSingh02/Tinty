@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { ButtonLink } from '../ui/Button.tsx'
 import GradientRing from '../ui/GradientRing.tsx'
 import { MAX_SCORE } from '../../priceGame/scoring.ts'
@@ -16,6 +17,11 @@ export default function PriceStartScreen() {
         <p className="mt-4 max-w-sm text-base text-text-dim">
           Five real, branded items. Guess what they actually cost. Five
           rounds, scored out of {MAX_SCORE}.
+        </p>
+        <p className="mt-2 text-sm">
+          <Link to="/learn/price-guess" className="text-accent hover:underline">
+            How to play &amp; tips
+          </Link>
         </p>
 
         {stats.gamesPlayed > 0 && (

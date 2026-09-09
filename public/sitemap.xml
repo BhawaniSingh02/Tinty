@@ -10,6 +10,12 @@
   <url><loc>https://tinty.fun/price/friends</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/price/daily</loc><priority>0.7</priority></url>
   <url><loc>https://tinty.fun/about</loc><priority>0.5</priority></url>
+  <url><loc>https://tinty.fun/learn</loc><priority>0.6</priority></url>
+  <url><loc>https://tinty.fun/learn/color-match</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/learn/price-guess</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/learn/remembering-colors</loc><priority>0.6</priority></url>
+  <url><loc>https://tinty.fun/learn/guessing-prices</loc><priority>0.6</priority></url>
+  <url><loc>https://tinty.fun/learn/color-perception</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/contact</loc><priority>0.4</priority></url>
   <url><loc>https://tinty.fun/privacy</loc><priority>0.3</priority></url>
 </urlset>

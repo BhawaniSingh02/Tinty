@@ -11,6 +11,10 @@ export default function SiteFooter() {
         About
       </a>
       <span aria-hidden="true">·</span>
+      <a href="/learn" className="transition-colors hover:text-text-dim">
+        Learn
+      </a>
+      <span aria-hidden="true">·</span>
       <a href="/contact" className="transition-colors hover:text-text-dim">
         Contact
       </a>

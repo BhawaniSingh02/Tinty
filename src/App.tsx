@@ -16,6 +16,12 @@ import PriceDailyGame from './routes/PriceDailyGame.tsx'
 import Privacy from './routes/Privacy.tsx'
 import About from './routes/About.tsx'
 import Contact from './routes/Contact.tsx'
+import Learn from './routes/Learn.tsx'
+import GuideColorMatch from './routes/GuideColorMatch.tsx'
+import GuidePriceGuess from './routes/GuidePriceGuess.tsx'
+import LearnRememberingColors from './routes/LearnRememberingColors.tsx'
+import LearnGuessingPrices from './routes/LearnGuessingPrices.tsx'
+import LearnColorPerception from './routes/LearnColorPerception.tsx'
 import NotFound from './routes/NotFound.tsx'
 import InstallPrompt from './components/layout/InstallPrompt.tsx'
 
@@ -39,6 +45,12 @@ export default function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/learn/color-match" element={<GuideColorMatch />} />
+        <Route path="/learn/price-guess" element={<GuidePriceGuess />} />
+        <Route path="/learn/remembering-colors" element={<LearnRememberingColors />} />
+        <Route path="/learn/guessing-prices" element={<LearnGuessingPrices />} />
+        <Route path="/learn/color-perception" element={<LearnColorPerception />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <InstallPrompt />

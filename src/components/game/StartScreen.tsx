@@ -5,7 +5,7 @@ import DifficultyToggle from '../ui/DifficultyToggle.tsx'
 import { DEFAULT_DIFFICULTY, type Difficulty } from '../../game/difficulty.ts'
 import { MAX_SCORE } from '../../game/scoring.ts'
 import { activeStreak, loadStats } from '../../game/storage.ts'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 /**
  * The start screen, rendered inside <GameCard>. Choose Solo or With friends,
@@ -25,6 +25,11 @@ export default function StartScreen() {
         <p className="mt-4 max-w-sm text-base text-text-dim">
           Watch five colors, then recreate them from memory. Five rounds, scored
           out of 50.
+        </p>
+        <p className="mt-2 text-sm">
+          <Link to="/learn/color-match" className="text-accent hover:underline">
+            How to play &amp; tips
+          </Link>
         </p>
 
         {stats.gamesPlayed > 0 && (
