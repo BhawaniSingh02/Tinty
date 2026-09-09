@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import Layout from '../components/layout/Layout.tsx'
+import GameCard from '../components/layout/GameCard.tsx'
 import Seo from '../components/Seo.tsx'
 import LeaderboardTable from '../components/leaderboard/LeaderboardTable.tsx'
 import { useLeaderboard } from '../leaderboards/useLeaderboard.ts'
@@ -78,7 +79,9 @@ export default function Leaderboard() {
         }
         description="All-time and daily leaderboards for Tinty's games. See the top 50 scores, where you rank, and how today's daily is going."
       />
-      <div className="flex max-h-[calc(100dvh-7rem)] w-full max-w-card flex-col overflow-hidden rounded-card border border-border bg-surface p-5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.55)] sm:p-6">
+      {/* Same fixed frame as the game card on Color Match / Price Guess — the
+          content inside changes with the data state, the card never does. */}
+      <GameCard className="p-5 text-left sm:p-6">
         {focused ? (
           <div className="flex items-baseline justify-between gap-3">
             <h1 className="text-lg font-bold">
@@ -137,7 +140,7 @@ export default function Leaderboard() {
             deviceId={deviceId}
           />
         </div>
-      </div>
+      </GameCard>
     </Layout>
   )
 }

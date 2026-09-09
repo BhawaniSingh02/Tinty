@@ -136,14 +136,20 @@ export default function LeaderboardTable({
     return () => obs.disconnect()
   }, [inList, entries])
 
+  // Every state below fills the card's fixed content area (`h-full`) so the
+  // frame never resizes between loading / empty / 1 row / 50 rows.
+
   if (entries === undefined) {
     return (
-      <ul className="flex flex-col gap-1.5" aria-hidden="true">
-        {Array.from({ length: 6 }, (_, i) => (
+      <ul
+        className="flex h-full flex-col gap-1.5 overflow-hidden"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 9 }, (_, i) => (
           <li
             key={i}
-            className="h-10 animate-pulse rounded-lg bg-surface-2"
-            style={{ opacity: 1 - i * 0.13 }}
+            className="h-10 shrink-0 animate-pulse rounded-lg bg-surface-2"
+            style={{ opacity: Math.max(0.15, 1 - i * 0.1) }}
           />
         ))}
       </ul>
@@ -152,20 +158,26 @@ export default function LeaderboardTable({
 
   if (entries === null) {
     return (
-      <p className="py-6 text-center text-sm text-text-dim">
-        Leaderboard&rsquo;s offline right now — try again in a bit.
-      </p>
+      <div className="flex h-full items-center justify-center">
+        <p className="text-center text-sm text-text-dim">
+          Leaderboard&rsquo;s offline right now — try again in a bit.
+        </p>
+      </div>
     )
   }
 
   if (entries.length === 0) {
     return (
-      <div>
-        <p className="py-6 text-center text-sm text-text-dim">
-          No scores yet — be the first to post one.
-        </p>
+      <div className="flex h-full flex-col">
+        <div className="flex flex-1 items-center justify-center">
+          <p className="text-center text-sm text-text-dim">
+            No scores yet — be the first to post one.
+          </p>
+        </div>
         {myStanding === null && (
-          <PinnedStanding standing={null} deviceId={deviceId} />
+          <div className="shrink-0">
+            <PinnedStanding standing={null} deviceId={deviceId} />
+          </div>
         )}
       </div>
     )
@@ -178,10 +190,10 @@ export default function LeaderboardTable({
       : Boolean(myStanding) && (!inList || !myRowVisible)
 
   return (
-    <div className="flex min-h-0 flex-col">
+    <div className="flex h-full min-h-0 flex-col">
       <ul
         ref={listRef}
-        className="flex max-h-[24rem] flex-col gap-1 overflow-y-auto pr-0.5"
+        className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto pr-0.5"
       >
         {entries.map((e) => {
           const isMe = e.deviceId === deviceId
@@ -199,7 +211,9 @@ export default function LeaderboardTable({
         })}
       </ul>
       {showPinned && (
-        <PinnedStanding standing={myStanding ?? null} deviceId={deviceId} />
+        <div className="shrink-0">
+          <PinnedStanding standing={myStanding ?? null} deviceId={deviceId} />
+        </div>
       )}
     </div>
   )
