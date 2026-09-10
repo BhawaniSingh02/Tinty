@@ -9,7 +9,7 @@
  * Bump CACHE_VERSION whenever you want every client to drop its old shell
  * cache on next load.
  */
-const CACHE_VERSION = 'tinty-shell-v2'
+const CACHE_VERSION = 'tinty-shell-v3'
 
 // Static things we can name up front. Hashed JS/CSS bundles are picked up at
 // runtime by the stale-while-revalidate handler below.

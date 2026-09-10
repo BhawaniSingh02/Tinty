@@ -28,14 +28,17 @@
       property="og:description"
       content="Watch five colors, then recreate them from memory. Play solo or challenge a friend — free, no sign-up."
     />
-    <meta property="og:image" content="https://tinty.fun/logo.png" />
+    <meta property="og:image" content="https://tinty.fun/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tinty — Can you remember this color? A color memory game." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Color Match — a color memory game | Tinty" />
     <meta
       name="twitter:description"
       content="Watch five colors, then recreate them from memory. Play solo or challenge a friend — free, no sign-up."
     />
-    <meta name="twitter:image" content="https://tinty.fun/logo.png" />
+    <meta name="twitter:image" content="https://tinty.fun/og-image.png" />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
       rel="stylesheet"
@@ -55,9 +58,220 @@
         }
       } catch (e) {}
     </script>
+
+    <!-- First-paint shell. Renders instantly from static HTML so a cold link
+         click (e.g. from Twitter) never shows a blank screen while the JS
+         bundle loads. main.tsx fades #boot out once React has painted. -->
+    <style>
+      #boot {
+        --boot-bg: #121216;
+        --boot-surface: #1c1c21;
+        --boot-border: #313139;
+        --boot-text: #f2f2f3;
+        --boot-dim: #8a8a92;
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family:
+          'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        opacity: 1;
+        transition: opacity 0.35s ease;
+      }
+      :root[data-theme='light'] #boot {
+        --boot-bg: #f7f7f8;
+        --boot-surface: #ffffff;
+        --boot-border: #e3e3e7;
+        --boot-text: #161618;
+        --boot-dim: #6b6b74;
+      }
+      html.boot-done #boot {
+        opacity: 0;
+        pointer-events: none;
+      }
+      /* Header — mirrors <SiteHeader>: centered nav pill, corner controls. */
+      .boot-header {
+        position: relative;
+        display: flex;
+        width: 100%;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+      }
+      .boot-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 999px;
+        padding: 4px;
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      :root[data-theme='light'] .boot-pill {
+        border-color: rgba(0, 0, 0, 0.08);
+        background: rgba(0, 0, 0, 0.04);
+      }
+      .boot-tab {
+        border-radius: 999px;
+        padding: 6px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.4;
+      }
+      .boot-tab--active {
+        background: var(--boot-text);
+        color: var(--boot-bg);
+      }
+      .boot-tab--idle {
+        border: 1px solid var(--boot-border);
+        background: var(--boot-surface);
+        color: var(--boot-dim);
+      }
+      .boot-logo {
+        display: block;
+        height: 24px;
+        width: auto;
+        margin: 0 12px;
+      }
+      :root:not([data-theme='light']) .boot-logo {
+        filter: brightness(0) invert(1);
+      }
+      .boot-corner {
+        position: absolute;
+        top: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        border: 1px solid var(--boot-border);
+        background: var(--boot-surface);
+        border-radius: 999px;
+        color: var(--boot-dim);
+      }
+      .boot-corner--left {
+        left: 16px;
+        padding: 0 10px;
+      }
+      .boot-corner--right {
+        right: 16px;
+        width: 32px;
+        justify-content: center;
+        padding: 0;
+      }
+      .boot-corner span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      @media (max-width: 640px) {
+        .boot-corner--left span {
+          display: none;
+        }
+        .boot-corner--left {
+          width: 32px;
+          justify-content: center;
+          padding: 0;
+        }
+        .boot-logo {
+          height: 28px;
+        }
+      }
+      /* Main — a skeleton of <GameCard> so the layout never shifts. */
+      .boot-main {
+        display: flex;
+        width: 100%;
+        flex: 1 1 0%;
+        min-height: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+      }
+      .boot-card {
+        position: relative;
+        width: 100%;
+        max-width: 30rem;
+        aspect-ratio: 5 / 6;
+        border-radius: 20px;
+        border: 1px solid var(--boot-border);
+        background: var(--boot-surface);
+        box-shadow:
+          0 30px 80px -20px rgba(0, 0, 0, 0.65),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        animation: boot-pulse 1.8s ease-in-out infinite;
+      }
+      @keyframes boot-pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.72;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .boot-card {
+          animation: none;
+        }
+        #boot {
+          transition: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <div id="boot" aria-hidden="true">
+      <div class="boot-header">
+        <div class="boot-corner boot-corner--left">
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 4h12v4a6 6 0 0 1-12 0V4Z" />
+            <path d="M6 6H4a2 2 0 0 0 0 4h2M18 6h2a2 2 0 0 1 0 4h-2M9 20h6M12 14v6" />
+          </svg>
+          <span>Leaderboard</span>
+        </div>
+
+        <div class="boot-pill">
+          <span class="boot-tab boot-tab--active">color</span>
+          <img class="boot-logo" src="/logo.png" alt="tinty" />
+          <span class="boot-tab boot-tab--idle">price</span>
+        </div>
+
+        <div class="boot-corner boot-corner--right">
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="boot-main">
+        <div class="boot-card"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

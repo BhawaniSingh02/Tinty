@@ -17,6 +17,19 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
+// Fade out the static first-paint shell (see #boot in index.html) once React
+// has painted a real frame underneath it — no flash, no layout jump.
+function dismissBootShell() {
+  const boot = document.getElementById('boot')
+  if (!boot) return
+  document.documentElement.classList.add('boot-done')
+  const done = () => boot.remove()
+  boot.addEventListener('transitionend', done, { once: true })
+  // Fallback in case the transition is skipped (reduced motion, etc.).
+  setTimeout(done, 500)
+}
+requestAnimationFrame(() => requestAnimationFrame(dismissBootShell))
+
 // Register the app-shell service worker (see public/sw.js). Production only —
 // keeping it out of `vite dev` avoids stale-cache confusion while iterating.
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

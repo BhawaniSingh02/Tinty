@@ -7,7 +7,8 @@
  */
 
 const SITE = 'https://tinty.fun'
-const OG_IMAGE = `${SITE}/logo.png`
+// Absolute URL — Twitter/Facebook crawlers require it, they won't resolve a relative path.
+const OG_IMAGE = `${SITE}/og-image.png`
 
 type Props = {
   title: string
@@ -32,6 +33,12 @@ export default function Seo({ title, description, path, noindex }: Props) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta
+        property="og:image:alt"
+        content="Tinty — Can you remember this color? A color memory game."
+      />
       {url && <meta property="og:url" content={url} />}
 
       <meta name="twitter:card" content="summary_large_image" />
