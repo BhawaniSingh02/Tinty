@@ -1,4 +1,5 @@
 import { DIFFICULTIES } from '../game/difficulty.ts'
+import { PUZZLE_DIFFICULTIES } from '../puzzleGame/difficulty.ts'
 
 /**
  * The one place that says which leaderboards exist. Categories are *derived*
@@ -9,13 +10,14 @@ import { DIFFICULTIES } from '../game/difficulty.ts'
  * realtime channels, results-screen links — picks it up with no other change.
  *
  * Board strings (the DB `board` column, see supabase/migrations/0003):
- *   all-time : `${game}:${mode}`              e.g. "color:easy", "price:solo"
+ *   all-time : `${game}:${mode}`              e.g. "color:easy", "puzzle:hard"
  *   daily    : `${game}:daily:${ymd}`         e.g. "color:daily:2026-09-04"
- * ymd comes from the same UTC-day helpers the daily game already uses
- * (`todayDaily()` / `todayPriceDaily()`), so the reset boundary matches.
+ * ymd comes from the same UTC-day helpers the daily games already use
+ * (`todayDaily()` / `todayPriceDaily()` / `todayPuzzleDaily()`), so the reset
+ * boundary matches.
  */
 
-export type LeaderboardGameId = 'color' | 'price'
+export type LeaderboardGameId = 'color' | 'price' | 'puzzle'
 export type LeaderboardKind = 'alltime' | 'daily'
 
 export interface GameModeDef {
@@ -49,6 +51,13 @@ export const LEADERBOARD_GAMES: LeaderboardGameDef[] = [
     // No difficulty split yet — a single all-time board. Add more entries here
     // (or map a future price-difficulty list) to grow the tabs automatically.
     modes: [{ id: 'solo', label: 'Solo' }],
+    daily: true,
+  },
+  {
+    game: 'puzzle',
+    label: 'Picture Puzzle',
+    // One board per grid size (3×3 / 4×4 / 5×5). Scores are out of 10.
+    modes: PUZZLE_DIFFICULTIES.map((d) => ({ id: d, label: capitalize(d) })),
     daily: true,
   },
 ]

@@ -20,8 +20,10 @@ function room(over: Partial<LiveRoom>): LiveRoom {
     seed: 123,
     gameNonce: 0,
     scores: {},
+    progress: {},
     start: vi.fn(),
     submitRound: vi.fn(),
+    sendProgress: vi.fn(),
     rematch: vi.fn(),
     ...over,
   }

@@ -20,8 +20,13 @@ function TrophyIcon() {
 }
 
 const TABS = [
-  { to: '/', label: 'color', match: (p: string) => !p.startsWith('/price') },
+  {
+    to: '/',
+    label: 'color',
+    match: (p: string) => !p.startsWith('/price') && !p.startsWith('/puzzle'),
+  },
   { to: '/price', label: 'price', match: (p: string) => p.startsWith('/price') },
+  { to: '/puzzle', label: 'puzzle', match: (p: string) => p.startsWith('/puzzle') },
 ]
 
 function NavLink({ to, label, active }: { to: string; label: string; active: boolean }) {
@@ -29,7 +34,7 @@ function NavLink({ to, label, active }: { to: string; label: string; active: boo
     <Link
       to={to}
       className={[
-        'rounded-full border px-4 py-1.5 text-sm font-semibold lowercase tracking-tight transition-all',
+        'rounded-full border px-2.5 py-1.5 text-[13px] font-semibold lowercase tracking-tight transition-all sm:px-4 sm:text-sm',
         active
           ? 'border-transparent bg-text text-bg shadow-[0_1px_2px_rgba(0,0,0,0.15),0_4px_12px_-4px_rgba(0,0,0,0.35)]'
           : 'border-border bg-surface text-text-dim hover:border-text-dim/40 hover:text-text',
@@ -40,21 +45,22 @@ function NavLink({ to, label, active }: { to: string; label: string; active: boo
   )
 }
 
-/** Slim site header: color — tinty — price, grouped together and centered
+/** Slim site header: color — tinty — price · puzzle, grouped together and centered
  *  on the page, with a small theme toggle tucked in the corner. New Phase 2
  *  modes slot in as siblings of color/price (CLAUDE.md). */
 export default function SiteHeader() {
   const { pathname } = useLocation()
-  const [color, price] = TABS
+  const [color, price, puzzle] = TABS
 
   return (
     <header className="relative flex w-full shrink-0 items-center justify-center px-4 py-2.5 after:pointer-events-none after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-full after:max-w-card after:-translate-x-1/2 after:bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--color-border)_90%,var(--color-text)),transparent)]">
-      <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
+      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md sm:gap-2">
         <NavLink to={color.to} label={color.label} active={color.match(pathname)} />
-        <Link to="/" className="block px-3 transition-opacity hover:opacity-80">
-          <img src="/logo.png" alt="tinty" className="site-logo h-6 w-auto sm:h-7" />
+        <Link to="/" className="block px-1.5 transition-opacity hover:opacity-80 sm:px-3">
+          <img src="/logo.png" alt="tinty" className="site-logo h-5 w-auto sm:h-7" />
         </Link>
         <NavLink to={price.to} label={price.label} active={price.match(pathname)} />
+        <NavLink to={puzzle.to} label={puzzle.label} active={puzzle.match(pathname)} />
       </div>
 
       <Link

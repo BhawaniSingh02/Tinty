@@ -75,7 +75,7 @@ export default function Leaderboard() {
         title={
           focused
             ? `${gameLabel(game)} ${category.label} leaderboard | Tinty`
-            : 'Leaderboards — Color Match & Price Guess | Tinty'
+            : 'Leaderboards — Color Match, Price Guess & Picture Puzzle | Tinty'
         }
         description="All-time and daily leaderboards for Tinty's games. See the top 50 scores, where you rank, and how today's daily is going."
       />

@@ -1,11 +1,20 @@
-import { DIFFICULTIES, type Difficulty } from '../../game/difficulty.ts'
+import { DIFFICULTIES } from '../../game/difficulty.ts'
 
-export default function DifficultyToggle({
+/**
+ * Pill radio group for picking a difficulty. Defaults to Color Match's
+ * easy/hard; other games pass their own `options` (Picture Puzzle: three
+ * grid sizes) and optional `labels`.
+ */
+export default function DifficultyToggle<T extends string>({
   value,
   onChange,
+  options = DIFFICULTIES as unknown as readonly T[],
+  labels,
 }: {
-  value: Difficulty
-  onChange: (next: Difficulty) => void
+  value: T
+  onChange: (next: T) => void
+  options?: readonly T[]
+  labels?: Partial<Record<T, string>>
 }) {
   return (
     <div
@@ -13,7 +22,7 @@ export default function DifficultyToggle({
       aria-label="Difficulty"
       className="inline-flex rounded-full border border-border bg-surface-2 p-1"
     >
-      {DIFFICULTIES.map((d) => {
+      {options.map((d) => {
         const active = d === value
         return (
           <button
@@ -28,7 +37,7 @@ export default function DifficultyToggle({
                 : 'text-text-dim hover:text-text',
             ].join(' ')}
           >
-            {d}
+            {labels?.[d] ?? d}
           </button>
         )
       })}

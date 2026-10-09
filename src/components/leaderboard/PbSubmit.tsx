@@ -26,6 +26,7 @@ export default function PbSubmit({
   breakdown,
   isNewBest,
   alreadyPosted = false,
+  showLink = true,
   onPosted,
 }: {
   category: LeaderboardCategory
@@ -33,6 +34,8 @@ export default function PbSubmit({
   breakdown: number[]
   isNewBest: boolean
   alreadyPosted?: boolean
+  /** Off when the screen already has its own "View leaderboard" button. */
+  showLink?: boolean
   onPosted?: (standing: MyStanding) => void
 }) {
   const board = dbBoard(
@@ -103,7 +106,7 @@ export default function PbSubmit({
           {posted ? 'Posted to the board.' : 'Beat your best to make the board.'}
         </span>
       )}
-      <LeaderboardLink category={category} />
+      {showLink && <LeaderboardLink category={category} />}
     </div>
   )
 }

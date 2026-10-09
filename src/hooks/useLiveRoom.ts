@@ -10,6 +10,7 @@ import {
   roomSeed,
   type LiveMessage,
   type LivePlayer,
+  type LiveProgress,
 } from '../game/live.ts'
 
 export type RoomStatus = 'connecting' | 'lobby' | 'playing' | 'error'
@@ -24,15 +25,19 @@ export interface LiveRoom {
   /** Bumps on every start / rematch — key the game component on it to remount. */
   gameNonce: number
   scores: Record<string, number[]>
+  /** Latest progress per player id (only games that send it). */
+  progress: Record<string, LiveProgress>
   start: () => void
   submitRound: (n: number, score: number) => void
+  sendProgress: (p: LiveProgress) => void
   rematch: () => void
 }
 
 const newId = () => Math.random().toString(36).slice(2, 10)
 
-/** Connect to a live room for a challenge code. `tag` updates presence when it changes. */
-export function useLiveRoom(code: string, tag: string): LiveRoom {
+/** Connect to a live room for a challenge code. `tag` updates presence when it
+ *  changes. `namespace` separates games that share the code space. */
+export function useLiveRoom(code: string, tag: string, namespace = ''): LiveRoom {
   const meId = useMemo(() => {
     try {
       const existing = sessionStorage.getItem('tinty.liveId')
@@ -50,6 +55,7 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
   )
   const [players, setPlayers] = useState<LivePlayer[]>([])
   const [scores, setScores] = useState<Record<string, number[]>>({})
+  const [progress, setProgress] = useState<Record<string, LiveProgress>>({})
   const [seed, setSeed] = useState(() => roomSeed(code))
   const [gameNonce, setGameNonce] = useState(0)
 
@@ -68,10 +74,14 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
     if (msg.t === 'start' || msg.t === 'rematch') {
       setSeed(msg.seed)
       setScores({})
+      setProgress({})
       setGameNonce((n) => n + 1)
       setStatus('playing')
     } else if (msg.t === 'submit') {
       setScores((s) => mergeScore(s, msg.id, msg.n, msg.score))
+    } else if (msg.t === 'progress') {
+      const { id, correct, total, moves, seconds, done } = msg
+      setProgress((p) => ({ ...p, [id]: { correct, total, moves, seconds, done } }))
     }
   }, [])
 
@@ -82,7 +92,7 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
 
     void getSupabase()?.then((sb) => {
       if (cancelled) return
-      channel = sb.channel(roomChannel(code), {
+      channel = sb.channel(roomChannel(code, namespace), {
         config: { broadcast: { self: false }, presence: { key: meId } },
       })
       channelRef.current = channel
@@ -130,7 +140,7 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
       void channel?.unsubscribe()
       channelRef.current = null
     }
-  }, [code, meId, apply, joinedAt])
+  }, [code, namespace, meId, apply, joinedAt])
 
   useEffect(() => {
     void channelRef.current?.track({
@@ -156,6 +166,14 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
     [meId, send],
   )
 
+  const sendProgress = useCallback(
+    (p: LiveProgress) => {
+      send({ t: 'progress', id: meId, ...p })
+      setProgress((prev) => ({ ...prev, [meId]: p }))
+    },
+    [meId, send],
+  )
+
   const rematch = useCallback(() => {
     const s = randomSeed()
     send({ t: 'rematch', seed: s })
@@ -171,8 +189,10 @@ export function useLiveRoom(code: string, tag: string): LiveRoom {
     seed,
     gameNonce,
     scores,
+    progress,
     start,
     submitRound,
+    sendProgress,
     rematch,
   }
 }

@@ -14,7 +14,9 @@ import { ROUNDS } from './scoring.ts'
 
 export const ROOM_PREFIX = 'tinty-room-'
 
-export const roomChannel = (code: string) => ROOM_PREFIX + code.toLowerCase()
+/** `namespace` keeps other games' rooms (e.g. "puzzle-") off this channel. */
+export const roomChannel = (code: string, namespace = '') =>
+  ROOM_PREFIX + namespace + code.toLowerCase()
 
 export const roomSeed = (code: string): number => codeToSeed(code) ?? 0
 
@@ -28,6 +30,16 @@ export type LiveMessage =
   | { t: 'start'; seed: number }
   | { t: 'rematch'; seed: number }
   | { t: 'submit'; id: string; n: number; score: number }
+  | ({ t: 'progress'; id: string } & LiveProgress)
+
+/** Mid-game progress for games with no rounds (Picture Puzzle tiles). */
+export interface LiveProgress {
+  correct: number
+  total: number
+  moves: number
+  seconds: number
+  done: boolean
+}
 
 /** Deterministic host: earliest joiner, tiebreak by id. Survives the host leaving. */
 export function electHost(players: LivePlayer[]): string | null {

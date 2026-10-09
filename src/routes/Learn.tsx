@@ -17,6 +17,12 @@ const GUIDES: Entry[] = [
     blurb:
       'How the game works, why scoring is percentage-based, the product categories, and how to estimate prices you have never seen.',
   },
+  {
+    to: '/learn/picture-puzzle',
+    title: 'How to play Picture Puzzle',
+    blurb:
+      'Swapping and lock-in, the three grid sizes, how time, moves and peeks are scored, the daily, racing friends, and tips to solve faster.',
+  },
 ]
 
 const ARTICLES: Entry[] = [
@@ -60,7 +66,7 @@ export default function Learn() {
       <Seo
         path="/learn"
         title="Guides & articles — Tinty"
-        description="How to play Color Match and Price Guess, plus short readable articles on color memory, color perception and the psychology of guessing prices."
+        description="How to play Color Match, Price Guess and Picture Puzzle, plus short readable articles on color memory, color perception and the psychology of guessing prices."
       />
       <h1>Guides &amp; articles</h1>
       <p className="lede">

@@ -136,7 +136,7 @@
       }
       .boot-logo {
         display: block;
-        height: 24px;
+        height: 28px;
         width: auto;
         margin: 0 12px;
       }
@@ -179,7 +179,15 @@
           padding: 0;
         }
         .boot-logo {
-          height: 28px;
+          height: 20px;
+          margin: 0 6px;
+        }
+        .boot-pill {
+          gap: 4px;
+        }
+        .boot-tab {
+          padding: 6px 10px;
+          font-size: 13px;
         }
       }
       /* Main — a skeleton of <GameCard> so the layout never shifts. */
@@ -249,6 +257,7 @@
           <span class="boot-tab boot-tab--active">color</span>
           <img class="boot-logo" src="/logo.png" alt="tinty" />
           <span class="boot-tab boot-tab--idle">price</span>
+          <span class="boot-tab boot-tab--idle">puzzle</span>
         </div>
 
         <div class="boot-corner boot-corner--right">

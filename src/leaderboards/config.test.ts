@@ -34,9 +34,22 @@ test('dbBoard builds the DB board string', () => {
   expect(() => dbBoard(findCategory('price:daily')!)).toThrow()
 })
 
+test('Picture Puzzle has Easy + Medium + Hard + Daily', () => {
+  expect(categoriesForGame('puzzle').map((c) => c.key)).toEqual([
+    'puzzle:easy',
+    'puzzle:medium',
+    'puzzle:hard',
+    'puzzle:daily',
+  ])
+  expect(dbBoard(findCategory('puzzle:daily')!, '2026-10-09')).toBe(
+    'puzzle:daily:2026-10-09',
+  )
+})
+
 test('every DB board string matches the migration regex', () => {
+  // Same pattern as supabase/migrations/0004_puzzle_leaderboards.sql
   const re =
-    /^(color:(easy|hard)|price:solo|(color|price):daily:\d{4}-\d{2}-\d{2})$/
+    /^(color:(easy|hard)|price:solo|puzzle:(easy|medium|hard)|(color|price|puzzle):daily:\d{4}-\d{2}-\d{2})$/
   for (const cat of ALL_CATEGORIES) {
     expect(dbBoard(cat, '2026-01-01')).toMatch(re)
   }

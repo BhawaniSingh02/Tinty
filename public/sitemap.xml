@@ -9,10 +9,16 @@
   <url><loc>https://tinty.fun/price/solo</loc><priority>0.7</priority></url>
   <url><loc>https://tinty.fun/price/friends</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/price/daily</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/puzzle</loc><priority>0.9</priority></url>
+  <url><loc>https://tinty.fun/puzzle/solo</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/puzzle/friends</loc><priority>0.6</priority></url>
+  <url><loc>https://tinty.fun/puzzle/daily</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/puzzle/gallery</loc><priority>0.5</priority></url>
   <url><loc>https://tinty.fun/about</loc><priority>0.5</priority></url>
   <url><loc>https://tinty.fun/learn</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/learn/color-match</loc><priority>0.7</priority></url>
   <url><loc>https://tinty.fun/learn/price-guess</loc><priority>0.7</priority></url>
+  <url><loc>https://tinty.fun/learn/picture-puzzle</loc><priority>0.7</priority></url>
   <url><loc>https://tinty.fun/learn/remembering-colors</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/learn/guessing-prices</loc><priority>0.6</priority></url>
   <url><loc>https://tinty.fun/learn/color-perception</loc><priority>0.6</priority></url>

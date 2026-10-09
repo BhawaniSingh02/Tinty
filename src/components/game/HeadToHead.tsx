@@ -5,14 +5,16 @@ export interface Side {
   total: number
   /** Per-round points, if known — enables the round-by-round breakdown. */
   breakdown?: number[]
+  /** A short stat line under the score, e.g. "1:23 · 19 moves". */
+  detail?: string
 }
 
-function ScoreBar({ value, lead }: { value: number; lead: boolean }) {
+function ScoreBar({ value, lead, max }: { value: number; lead: boolean; max: number }) {
   return (
     <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-surface-2">
       <div
         className={`h-full rounded-full ${lead ? 'bg-accent' : 'bg-text-dim'}`}
-        style={{ width: `${Math.min(100, (value / MAX_SCORE) * 100)}%` }}
+        style={{ width: `${Math.min(100, (value / max) * 100)}%` }}
       />
     </div>
   )
@@ -22,10 +24,14 @@ function Column({
   label,
   total,
   lead,
+  max,
+  detail,
 }: {
   label: string
   total: number
   lead: boolean
+  max: number
+  detail?: string
 }) {
   return (
     <div>
@@ -43,13 +49,23 @@ function Column({
       >
         {total.toFixed(2)}
       </div>
-      <ScoreBar value={total} lead={lead} />
+      <ScoreBar value={total} lead={lead} max={max} />
+      {detail && <div className="mt-1.5 text-xs tabular-nums text-text-dim">{detail}</div>}
     </div>
   )
 }
 
 /** Two players' scores side by side, with a headline and optional round detail. */
-export default function HeadToHead({ you, them }: { you: Side; them: Side }) {
+export default function HeadToHead({
+  you,
+  them,
+  max = MAX_SCORE,
+}: {
+  you: Side
+  them: Side
+  /** The score scale for the bars — 50 by default, 10 for Picture Puzzle. */
+  max?: number
+}) {
   const diff = you.total - them.total
   const tie = Math.abs(diff) < 0.05
   const youLead = diff > 0
@@ -78,8 +94,20 @@ export default function HeadToHead({ you, them }: { you: Side; them: Side }) {
       </h1>
 
       <div className="mt-4 grid grid-cols-2 gap-5">
-        <Column label={you.label} total={you.total} lead={youLead || tie} />
-        <Column label={them.label} total={them.total} lead={!youLead || tie} />
+        <Column
+          label={you.label}
+          total={you.total}
+          lead={youLead || tie}
+          max={max}
+          detail={you.detail}
+        />
+        <Column
+          label={them.label}
+          total={them.total}
+          lead={!youLead || tie}
+          max={max}
+          detail={them.detail}
+        />
       </div>
 
       {rounds && (

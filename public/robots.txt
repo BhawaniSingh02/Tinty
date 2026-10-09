@@ -6,5 +6,7 @@ Disallow: /c/
 Disallow: /live/
 Disallow: /price/c/
 Disallow: /price/live/
+Disallow: /puzzle/c/
+Disallow: /puzzle/live/
 
 Sitemap: https://tinty.fun/sitemap.xml

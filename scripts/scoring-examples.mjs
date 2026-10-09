@@ -1,5 +1,5 @@
 /**
- * Prints example score outputs for both games' scoring curves so the curve
+ * Prints example score outputs for every game's scoring curve so the curve
  * can be sanity-checked without launching the app.
  *
  *   node scripts/scoring-examples.mjs
@@ -8,6 +8,8 @@ import { hsbToLab } from '../src/game/color.ts'
 import { deltaE2000 } from '../src/game/deltaE.ts'
 import { pointsForDeltaE, scoreRound } from '../src/game/scoring.ts'
 import { pointsForError, scoreGuess } from '../src/priceGame/scoring.ts'
+import { formatClock, scorePuzzle } from '../src/puzzleGame/scoring.ts'
+import { minSwaps, shuffledBoard } from '../src/puzzleGame/board.ts'
 
 const bar = (n, max = 10, width = 24) =>
   '█'.repeat(Math.round((n / max) * width)).padEnd(width, '·')
@@ -79,5 +81,36 @@ for (const pct of [2, 5, 10, 15, 20, 25, 30, 33, 40, 50, 75, 95]) {
   console.log(
     `  ${String(pct).padStart(4)}%   ${stepped(pct).toFixed(2).padStart(7)}   ${prevExp(pct).toFixed(2).padStart(6)}   ${pointsForError(pct / 100).toFixed(2).padStart(6)}`,
   )
+}
+
+console.log('\n=== PICTURE PUZZLE — time × moves → points / 10 ===\n')
+console.log('  "optimal" = fewest swaps that solve the board (avg over 500 shuffles).')
+console.log('  few = optimal +15%   ·   some = +60%   ·   many = 2× optimal\n')
+const PUZZLE_CASES = [
+  ['easy', 3, [20, 45, 90]],
+  ['medium', 4, [50, 110, 220]],
+  ['hard', 5, [100, 210, 400]],
+]
+for (const [difficulty, size, [fast, mid, slow]] of PUZZLE_CASES) {
+  const opts = Array.from({ length: 500 }, (_, i) => minSwaps(shuffledBoard(size, i + 1)))
+  const optimal = Math.round(opts.reduce((a, b) => a + b, 0) / opts.length)
+  const moves = [
+    ['few', Math.round(optimal * 1.15)],
+    ['some', Math.round(optimal * 1.6)],
+    ['many', optimal * 2],
+  ]
+  console.log(`  ${difficulty.toUpperCase()} ${size}×${size}  (optimal ≈ ${optimal} swaps)`)
+  console.log(
+    '  ' + ''.padEnd(16) + moves.map(([l, m]) => `${l} (${m})`.padStart(12)).join(''),
+  )
+  for (const [label, seconds] of [['fast', fast], ['medium', mid], ['slow', slow]]) {
+    const row = moves.map(([, m]) =>
+      scorePuzzle({ difficulty, seconds, moves: m, optimal, peeks: 0 }).toFixed(2).padStart(12),
+    )
+    console.log(`  ${`${label} ${formatClock(seconds)}`.padEnd(16)}${row.join('')}`)
+  }
+  const base = scorePuzzle({ difficulty, seconds: mid, moves: Math.round(optimal * 1.15), optimal, peeks: 0 })
+  const peeked = scorePuzzle({ difficulty, seconds: mid, moves: Math.round(optimal * 1.15), optimal, peeks: 1 })
+  console.log(`  1 peek on medium/few: ${base.toFixed(2)} → ${peeked.toFixed(2)}\n`)
 }
 console.log()
